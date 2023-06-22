@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class TextInputWidget extends StatefulWidget {
@@ -21,7 +20,6 @@ class TextInputWidget extends StatefulWidget {
 class _TextInputWidgetState extends State<TextInputWidget> {
   @override
   Widget build(BuildContext context) {
-    print(widget.isPasswordVisible.toString());
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: 8,

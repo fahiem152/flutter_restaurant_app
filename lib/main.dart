@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_restaurant/bloc/get_all_restaurant/get_all_restaurant_bloc.dart';
 import 'package:flutter_restaurant/bloc/login/login_bloc.dart';
 import 'package:flutter_restaurant/bloc/register/register_bloc.dart';
 import 'package:flutter_restaurant/data/remote_datasource/auth_remote_datasource.dart';
+import 'package:flutter_restaurant/data/remote_datasource/restaurant_remote_datasource.dart';
 import 'package:flutter_restaurant/presentation/pages/home_page.dart';
 import 'package:flutter_restaurant/presentation/pages/login_page.dart';
 import 'package:flutter_restaurant/presentation/pages/register_page.dart';
@@ -26,6 +28,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => LoginBloc(AuthRemoteDataSource()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              GetAllRestaurantBloc(RestaurantRemoteDataSource()),
         ),
       ],
       child: MaterialApp.router(

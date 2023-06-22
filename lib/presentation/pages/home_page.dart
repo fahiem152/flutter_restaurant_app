@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../data/local_datasource/auth_local_datasource.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_restaurant/bloc/get_all_restaurant/get_all_restaurant_bloc.dart';
+import 'package:flutter_restaurant/presentation/widgets/card_restaurant_widget.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home';
@@ -13,8 +14,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    context
+        .read<GetAllRestaurantBloc>()
+        .add(const GetAllRestaurantEvent.getAllRestaurant());
   }
 
   @override
@@ -22,9 +25,36 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home Page'),
+        centerTitle: true,
       ),
-      body: const Center(
-        child: Text('HomePage'),
+      body: BlocBuilder<GetAllRestaurantBloc, GetAllRestaurantState>(
+        builder: (context, state) {
+          return state.maybeWhen(
+            orElse: () => const Center(
+              child: CircularProgressIndicator(),
+            ),
+            loaded: (model) {
+              return GridView.builder(
+                  itemCount: model.data.length,
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 200,
+                    childAspectRatio: 9 / 10,
+                    crossAxisSpacing: 20,
+                    mainAxisSpacing: 20,
+                  ),
+                  itemBuilder: (context, index) {
+                    return CardRestaurantWidget(
+                      imageUrl: model.data[index].attributes.photo,
+                      nameRestaurant: model.data[index].attributes.name,
+                      descbRestaurant: model.data[index].attributes.description,
+                    );
+                  });
+            },
+            error: (message) {
+              return Text(message);
+            },
+          );
+        },
       ),
     );
   }

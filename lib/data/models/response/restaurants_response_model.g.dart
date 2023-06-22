@@ -9,7 +9,7 @@ part of 'restaurants_response_model.dart';
 _$_RestaurantsResponseModel _$$_RestaurantsResponseModelFromJson(
         Map<String, dynamic> json) =>
     _$_RestaurantsResponseModel(
-      dataRestaurant: (json['dataRestaurant'] as List<dynamic>)
+      data: (json['data'] as List<dynamic>)
           .map((e) => Restaurant.fromJson(e as Map<String, dynamic>))
           .toList(),
       meta: Meta.fromJson(json['meta'] as Map<String, dynamic>),
@@ -18,7 +18,7 @@ _$_RestaurantsResponseModel _$$_RestaurantsResponseModelFromJson(
 Map<String, dynamic> _$$_RestaurantsResponseModelToJson(
         _$_RestaurantsResponseModel instance) =>
     <String, dynamic>{
-      'dataRestaurant': instance.dataRestaurant,
+      'data': instance.data,
       'meta': instance.meta,
     };
 
