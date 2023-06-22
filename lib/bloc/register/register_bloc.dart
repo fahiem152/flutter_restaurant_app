@@ -6,6 +6,7 @@ import 'package:flutter_restaurant/data/remote_datasource/auth_remote_datasource
 
 import '../../../data/models/request/register_request_model.dart';
 import '../../../data/models/response/auth_response_model.dart';
+import '../../data/models/response/error_response_model.dart';
 
 part 'register_bloc.freezed.dart';
 part 'register_event.dart';

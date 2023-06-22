@@ -176,7 +176,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   error: (message) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text(message),
+                        content: Text(message.error.message),
                       ),
                     );
                   },

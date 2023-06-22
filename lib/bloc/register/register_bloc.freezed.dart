@@ -325,7 +325,7 @@ mixin _$RegisterState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AuthResponseModel model) loaded,
-    required TResult Function(String message) error,
+    required TResult Function(ErrorResponseModel model) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -333,7 +333,7 @@ mixin _$RegisterState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AuthResponseModel model)? loaded,
-    TResult? Function(String message)? error,
+    TResult? Function(ErrorResponseModel model)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -341,7 +341,7 @@ mixin _$RegisterState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AuthResponseModel model)? loaded,
-    TResult Function(String message)? error,
+    TResult Function(ErrorResponseModel model)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -430,7 +430,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AuthResponseModel model) loaded,
-    required TResult Function(String message) error,
+    required TResult Function(ErrorResponseModel model) error,
   }) {
     return initial();
   }
@@ -441,7 +441,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AuthResponseModel model)? loaded,
-    TResult? Function(String message)? error,
+    TResult? Function(ErrorResponseModel model)? error,
   }) {
     return initial?.call();
   }
@@ -452,7 +452,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AuthResponseModel model)? loaded,
-    TResult Function(String message)? error,
+    TResult Function(ErrorResponseModel model)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -543,7 +543,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AuthResponseModel model) loaded,
-    required TResult Function(String message) error,
+    required TResult Function(ErrorResponseModel model) error,
   }) {
     return loading();
   }
@@ -554,7 +554,7 @@ class _$_Loading implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AuthResponseModel model)? loaded,
-    TResult? Function(String message)? error,
+    TResult? Function(ErrorResponseModel model)? error,
   }) {
     return loading?.call();
   }
@@ -565,7 +565,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AuthResponseModel model)? loaded,
-    TResult Function(String message)? error,
+    TResult Function(ErrorResponseModel model)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -691,7 +691,7 @@ class _$_Loaded implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AuthResponseModel model) loaded,
-    required TResult Function(String message) error,
+    required TResult Function(ErrorResponseModel model) error,
   }) {
     return loaded(model);
   }
@@ -702,7 +702,7 @@ class _$_Loaded implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AuthResponseModel model)? loaded,
-    TResult? Function(String message)? error,
+    TResult? Function(ErrorResponseModel model)? error,
   }) {
     return loaded?.call(model);
   }
@@ -713,7 +713,7 @@ class _$_Loaded implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AuthResponseModel model)? loaded,
-    TResult Function(String message)? error,
+    TResult Function(ErrorResponseModel model)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -774,7 +774,9 @@ abstract class _$$_ErrorCopyWith<$Res> {
   factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
       __$$_ErrorCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message});
+  $Res call({ErrorResponseModel model});
+
+  $ErrorResponseModelCopyWith<$Res> get model;
 }
 
 /// @nodoc
@@ -787,28 +789,36 @@ class __$$_ErrorCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = null,
+    Object? model = null,
   }) {
     return _then(_$_Error(
-      null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      null == model
+          ? _value.model
+          : model // ignore: cast_nullable_to_non_nullable
+              as ErrorResponseModel,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ErrorResponseModelCopyWith<$Res> get model {
+    return $ErrorResponseModelCopyWith<$Res>(_value.model, (value) {
+      return _then(_value.copyWith(model: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_Error implements _Error {
-  const _$_Error(this.message);
+  const _$_Error(this.model);
 
   @override
-  final String message;
+  final ErrorResponseModel model;
 
   @override
   String toString() {
-    return 'RegisterState.error(message: $message)';
+    return 'RegisterState.error(model: $model)';
   }
 
   @override
@@ -816,11 +826,11 @@ class _$_Error implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Error &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.model, model) || other.model == model));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, model);
 
   @JsonKey(ignore: true)
   @override
@@ -834,9 +844,9 @@ class _$_Error implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AuthResponseModel model) loaded,
-    required TResult Function(String message) error,
+    required TResult Function(ErrorResponseModel model) error,
   }) {
-    return error(message);
+    return error(model);
   }
 
   @override
@@ -845,9 +855,9 @@ class _$_Error implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AuthResponseModel model)? loaded,
-    TResult? Function(String message)? error,
+    TResult? Function(ErrorResponseModel model)? error,
   }) {
-    return error?.call(message);
+    return error?.call(model);
   }
 
   @override
@@ -856,11 +866,11 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AuthResponseModel model)? loaded,
-    TResult Function(String message)? error,
+    TResult Function(ErrorResponseModel model)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(message);
+      return error(model);
     }
     return orElse();
   }
@@ -904,9 +914,9 @@ class _$_Error implements _Error {
 }
 
 abstract class _Error implements RegisterState {
-  const factory _Error(final String message) = _$_Error;
+  const factory _Error(final ErrorResponseModel model) = _$_Error;
 
-  String get message;
+  ErrorResponseModel get model;
   @JsonKey(ignore: true)
   _$$_ErrorCopyWith<_$_Error> get copyWith =>
       throw _privateConstructorUsedError;
