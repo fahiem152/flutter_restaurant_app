@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_restaurant/common/constants.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/response/error_response_model.dart';
 import '../models/response/restaurants_response_model.dart';
 
 class RestaurantRemoteDataSource {
-  Future<Either<String, RestaurantsResponseModel>> getAllRestaurant() async {
+  Future<Either<ErrorResponseModel, RestaurantsResponseModel>>
+      getAllRestaurant() async {
     final response = await http.get(
       Uri.parse(
         '${Constants.baseUrl}/api/restaurants',
@@ -27,7 +29,13 @@ class RestaurantRemoteDataSource {
         ),
       );
     } else {
-      return const Left('API ERROR');
+      return Left(
+        ErrorResponseModel.fromJson(
+          jsonDecode(
+            response.body,
+          ),
+        ),
+      );
     }
   }
 

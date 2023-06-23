@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restaurant/data/remote_datasource/restaurant_remote_datasource.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../data/models/response/error_response_model.dart';
 import '../../data/models/response/restaurants_response_model.dart';
 
 part 'get_all_restaurant_event.dart';

@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../data/models/request/login_request_model.dart';
 import '../../data/models/response/auth_response_model.dart';
+import '../../data/models/response/error_response_model.dart';
 import '../../data/remote_datasource/auth_remote_datasource.dart';
 
 part 'login_event.dart';

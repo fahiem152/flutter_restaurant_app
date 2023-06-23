@@ -37,7 +37,7 @@ class AuthRemoteDataSource {
     }
   }
 
-  Future<Either<String, AuthResponseModel>> login(
+  Future<Either<ErrorResponseModel, AuthResponseModel>> login(
       LoginRequestModel model) async {
     final response = await http.post(
       Uri.parse('${Constants.baseUrl}/api/auth/local'),
@@ -57,7 +57,7 @@ class AuthRemoteDataSource {
         ),
       );
     } else {
-      return const Left("Login Failed");
+      return Left(ErrorResponseModel.fromJson(jsonDecode(response.body)));
     }
   }
 }

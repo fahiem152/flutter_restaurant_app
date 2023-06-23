@@ -6,5 +6,5 @@ class GetAllRestaurantState with _$GetAllRestaurantState {
   const factory GetAllRestaurantState.loading() = _Loading;
   const factory GetAllRestaurantState.loaded(RestaurantsResponseModel model) =
       _Loaded;
-  const factory GetAllRestaurantState.error(String message) = _Error;
+  const factory GetAllRestaurantState.error(ErrorResponseModel model) = _Error;
 }

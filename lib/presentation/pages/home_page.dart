@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                 });
           },
           error: (message) {
-            return Text(message);
+            return Text(message.error.message);
           },
         );
       },
