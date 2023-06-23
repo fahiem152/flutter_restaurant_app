@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         routerConfig: GoRouter(
-          initialLocation: RegisterPage.routeName,
+          initialLocation: MainPage.routeName,
           routes: [
             GoRoute(
               path: LoginPage.routeName,
@@ -74,9 +74,10 @@ class MyApp extends StatelessWidget {
               builder: (context, state) => const MainPage(),
             ),
             GoRoute(
-              path: DetailRestaurant.routeName,
-              builder: (context, state) =>
-                  const DetailRestaurant(idRestaurant: 1),
+              path: '${DetailRestaurantPage.routeName}/:idRestaurant',
+              builder: (context, state) => DetailRestaurantPage(
+                  idRestaurant:
+                      int.parse(state.pathParameters['idRestaurant']!)),
             ),
           ],
         ),

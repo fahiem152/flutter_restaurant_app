@@ -41,9 +41,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 itemBuilder: (context, index) {
                   return CardRestaurantWidget(
-                    imageUrl: model.data[index].attributes.photo,
-                    nameRestaurant: model.data[index].attributes.name,
-                    descbRestaurant: model.data[index].attributes.description,
+                    restaurant: model.data[index],
                   );
                 });
           },

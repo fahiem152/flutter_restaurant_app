@@ -6,21 +6,15 @@ import 'package:flutter_restaurant/presentation/pages/detail_restaurant_page.dar
 import 'package:go_router/go_router.dart';
 
 class CardRestaurantWidget extends StatelessWidget {
-  final String imageUrl;
-  final String nameRestaurant;
-  final String descbRestaurant;
-  const CardRestaurantWidget({
-    Key? key,
-    required this.imageUrl,
-    required this.nameRestaurant,
-    required this.descbRestaurant,
-  }) : super(key: key);
+  final Restaurant restaurant;
+  const CardRestaurantWidget({Key? key, required this.restaurant})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(DetailRestaurant.routeName);
+        context.push('${DetailRestaurantPage.routeName}/${restaurant.id}');
       },
       child: Container(
         padding: const EdgeInsets.all(8),
@@ -35,13 +29,13 @@ class CardRestaurantWidget extends StatelessWidget {
               borderRadius: const BorderRadius.all(
                 Radius.circular(12),
               ),
-              child: Image.network(imageUrl),
+              child: Image.network(restaurant.attributes.photo),
             ),
             const SizedBox(
               height: 12,
             ),
             Text(
-              nameRestaurant,
+              restaurant.attributes.name,
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -51,7 +45,7 @@ class CardRestaurantWidget extends StatelessWidget {
               height: 4,
             ),
             Text(
-              descbRestaurant,
+              restaurant.attributes.description,
               style: const TextStyle(
                 fontSize: 16,
               ),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_restaurant/common/constants.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/response/add_restaurant_response_model.dart';
 import '../models/response/error_response_model.dart';
 import '../models/response/restaurants_response_model.dart';
 
@@ -39,12 +40,14 @@ class RestaurantRemoteDataSource {
     }
   }
 
-  Future<Either<String, Restaurant>> getByIdRestaurant(int idRestaurant) async {
+  Future<Either<String, AddRestaurantResponseModel>> getByIdRestaurant(
+      int idRestaurant) async {
     final response = await http
         .get(Uri.parse('${Constants.baseUrl}/api/restaurants/$idRestaurant'));
 
     if (response.statusCode == 200) {
-      return Right(Restaurant.fromJson(jsonDecode(response.body)));
+      return Right(
+          AddRestaurantResponseModel.fromJson(jsonDecode(response.body)));
     } else {
       return Left('Error get Restauranty ByID');
     }

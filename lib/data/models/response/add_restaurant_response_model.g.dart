@@ -9,15 +9,14 @@ part of 'add_restaurant_response_model.dart';
 _$_AddRestaurantResponseModel _$$_AddRestaurantResponseModelFromJson(
         Map<String, dynamic> json) =>
     _$_AddRestaurantResponseModel(
-      dataRestaurant: DataRestaurant.fromJson(
-          json['dataRestaurant'] as Map<String, dynamic>),
+      data: DataRestaurant.fromJson(json['data'] as Map<String, dynamic>),
       meta: Meta.fromJson(json['meta'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_AddRestaurantResponseModelToJson(
         _$_AddRestaurantResponseModel instance) =>
     <String, dynamic>{
-      'dataRestaurant': instance.dataRestaurant,
+      'data': instance.data,
       'meta': instance.meta,
     };
 

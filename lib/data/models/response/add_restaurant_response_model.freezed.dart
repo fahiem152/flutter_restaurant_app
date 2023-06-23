@@ -21,7 +21,7 @@ AddRestaurantResponseModel _$AddRestaurantResponseModelFromJson(
 
 /// @nodoc
 mixin _$AddRestaurantResponseModel {
-  DataRestaurant get dataRestaurant => throw _privateConstructorUsedError;
+  DataRestaurant get data => throw _privateConstructorUsedError;
   Meta get meta => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,9 +37,9 @@ abstract class $AddRestaurantResponseModelCopyWith<$Res> {
       _$AddRestaurantResponseModelCopyWithImpl<$Res,
           AddRestaurantResponseModel>;
   @useResult
-  $Res call({DataRestaurant dataRestaurant, Meta meta});
+  $Res call({DataRestaurant data, Meta meta});
 
-  $DataRestaurantCopyWith<$Res> get dataRestaurant;
+  $DataRestaurantCopyWith<$Res> get data;
   $MetaCopyWith<$Res> get meta;
 }
 
@@ -57,13 +57,13 @@ class _$AddRestaurantResponseModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dataRestaurant = null,
+    Object? data = null,
     Object? meta = null,
   }) {
     return _then(_value.copyWith(
-      dataRestaurant: null == dataRestaurant
-          ? _value.dataRestaurant
-          : dataRestaurant // ignore: cast_nullable_to_non_nullable
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
               as DataRestaurant,
       meta: null == meta
           ? _value.meta
@@ -74,9 +74,9 @@ class _$AddRestaurantResponseModelCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $DataRestaurantCopyWith<$Res> get dataRestaurant {
-    return $DataRestaurantCopyWith<$Res>(_value.dataRestaurant, (value) {
-      return _then(_value.copyWith(dataRestaurant: value) as $Val);
+  $DataRestaurantCopyWith<$Res> get data {
+    return $DataRestaurantCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
     });
   }
 
@@ -98,10 +98,10 @@ abstract class _$$_AddRestaurantResponseModelCopyWith<$Res>
       __$$_AddRestaurantResponseModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DataRestaurant dataRestaurant, Meta meta});
+  $Res call({DataRestaurant data, Meta meta});
 
   @override
-  $DataRestaurantCopyWith<$Res> get dataRestaurant;
+  $DataRestaurantCopyWith<$Res> get data;
   @override
   $MetaCopyWith<$Res> get meta;
 }
@@ -119,13 +119,13 @@ class __$$_AddRestaurantResponseModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dataRestaurant = null,
+    Object? data = null,
     Object? meta = null,
   }) {
     return _then(_$_AddRestaurantResponseModel(
-      dataRestaurant: null == dataRestaurant
-          ? _value.dataRestaurant
-          : dataRestaurant // ignore: cast_nullable_to_non_nullable
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
               as DataRestaurant,
       meta: null == meta
           ? _value.meta
@@ -138,20 +138,19 @@ class __$$_AddRestaurantResponseModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_AddRestaurantResponseModel implements _AddRestaurantResponseModel {
-  const _$_AddRestaurantResponseModel(
-      {required this.dataRestaurant, required this.meta});
+  const _$_AddRestaurantResponseModel({required this.data, required this.meta});
 
   factory _$_AddRestaurantResponseModel.fromJson(Map<String, dynamic> json) =>
       _$$_AddRestaurantResponseModelFromJson(json);
 
   @override
-  final DataRestaurant dataRestaurant;
+  final DataRestaurant data;
   @override
   final Meta meta;
 
   @override
   String toString() {
-    return 'AddRestaurantResponseModel(dataRestaurant: $dataRestaurant, meta: $meta)';
+    return 'AddRestaurantResponseModel(data: $data, meta: $meta)';
   }
 
   @override
@@ -159,14 +158,13 @@ class _$_AddRestaurantResponseModel implements _AddRestaurantResponseModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AddRestaurantResponseModel &&
-            (identical(other.dataRestaurant, dataRestaurant) ||
-                other.dataRestaurant == dataRestaurant) &&
+            (identical(other.data, data) || other.data == data) &&
             (identical(other.meta, meta) || other.meta == meta));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, dataRestaurant, meta);
+  int get hashCode => Object.hash(runtimeType, data, meta);
 
   @JsonKey(ignore: true)
   @override
@@ -186,14 +184,14 @@ class _$_AddRestaurantResponseModel implements _AddRestaurantResponseModel {
 abstract class _AddRestaurantResponseModel
     implements AddRestaurantResponseModel {
   const factory _AddRestaurantResponseModel(
-      {required final DataRestaurant dataRestaurant,
+      {required final DataRestaurant data,
       required final Meta meta}) = _$_AddRestaurantResponseModel;
 
   factory _AddRestaurantResponseModel.fromJson(Map<String, dynamic> json) =
       _$_AddRestaurantResponseModel.fromJson;
 
   @override
-  DataRestaurant get dataRestaurant;
+  DataRestaurant get data;
   @override
   Meta get meta;
   @override
