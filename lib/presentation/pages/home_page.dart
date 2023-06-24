@@ -24,32 +24,52 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GetAllRestaurantBloc, GetAllRestaurantState>(
-      builder: (context, state) {
-        return state.maybeWhen(
-          orElse: () => const Center(
-            child: CircularProgressIndicator(),
+    return Column(
+      children: [
+        SizedBox(
+          height: 12,
+        ),
+        Text(
+          'List Restaurant',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
           ),
-          loaded: (model) {
-            return GridView.builder(
-                itemCount: model.data.length,
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 9 / 10,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20,
+        ),
+        SizedBox(
+          height: 12,
+        ),
+        Expanded(
+          child: BlocBuilder<GetAllRestaurantBloc, GetAllRestaurantState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                orElse: () => const Center(
+                  child: CircularProgressIndicator(),
                 ),
-                itemBuilder: (context, index) {
-                  return CardRestaurantWidget(
-                    restaurant: model.data[index],
-                  );
-                });
-          },
-          error: (message) {
-            return Text(message.error.message);
-          },
-        );
-      },
+                loaded: (model) {
+                  return GridView.builder(
+                      itemCount: model.data.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 200,
+                        childAspectRatio: 9 / 10,
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 20,
+                      ),
+                      itemBuilder: (context, index) {
+                        return CardRestaurantWidget(
+                          restaurant: model.data[index],
+                        );
+                      });
+                },
+                error: (message) {
+                  return Text(message.error.message);
+                },
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

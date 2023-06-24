@@ -382,6 +382,8 @@ mixin _$Attributes {
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
   DateTime get publishedAt => throw _privateConstructorUsedError;
+  String get photo => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -403,7 +405,9 @@ abstract class $AttributesCopyWith<$Res> {
       String address,
       DateTime createdAt,
       DateTime updatedAt,
-      DateTime publishedAt});
+      DateTime publishedAt,
+      String photo,
+      String userId});
 }
 
 /// @nodoc
@@ -427,6 +431,8 @@ class _$AttributesCopyWithImpl<$Res, $Val extends Attributes>
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? publishedAt = null,
+    Object? photo = null,
+    Object? userId = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -461,6 +467,14 @@ class _$AttributesCopyWithImpl<$Res, $Val extends Attributes>
           ? _value.publishedAt
           : publishedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      photo: null == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -481,7 +495,9 @@ abstract class _$$_AttributesCopyWith<$Res>
       String address,
       DateTime createdAt,
       DateTime updatedAt,
-      DateTime publishedAt});
+      DateTime publishedAt,
+      String photo,
+      String userId});
 }
 
 /// @nodoc
@@ -503,6 +519,8 @@ class __$$_AttributesCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? publishedAt = null,
+    Object? photo = null,
+    Object? userId = null,
   }) {
     return _then(_$_Attributes(
       name: null == name
@@ -537,6 +555,14 @@ class __$$_AttributesCopyWithImpl<$Res>
           ? _value.publishedAt
           : publishedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      photo: null == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -552,7 +578,9 @@ class _$_Attributes implements _Attributes {
       required this.address,
       required this.createdAt,
       required this.updatedAt,
-      required this.publishedAt});
+      required this.publishedAt,
+      required this.photo,
+      required this.userId});
 
   factory _$_Attributes.fromJson(Map<String, dynamic> json) =>
       _$$_AttributesFromJson(json);
@@ -573,10 +601,14 @@ class _$_Attributes implements _Attributes {
   final DateTime updatedAt;
   @override
   final DateTime publishedAt;
+  @override
+  final String photo;
+  @override
+  final String userId;
 
   @override
   String toString() {
-    return 'Attributes(name: $name, description: $description, latitude: $latitude, longitude: $longitude, address: $address, createdAt: $createdAt, updatedAt: $updatedAt, publishedAt: $publishedAt)';
+    return 'Attributes(name: $name, description: $description, latitude: $latitude, longitude: $longitude, address: $address, createdAt: $createdAt, updatedAt: $updatedAt, publishedAt: $publishedAt, photo: $photo, userId: $userId)';
   }
 
   @override
@@ -597,13 +629,15 @@ class _$_Attributes implements _Attributes {
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
             (identical(other.publishedAt, publishedAt) ||
-                other.publishedAt == publishedAt));
+                other.publishedAt == publishedAt) &&
+            (identical(other.photo, photo) || other.photo == photo) &&
+            (identical(other.userId, userId) || other.userId == userId));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, name, description, latitude,
-      longitude, address, createdAt, updatedAt, publishedAt);
+      longitude, address, createdAt, updatedAt, publishedAt, photo, userId);
 
   @JsonKey(ignore: true)
   @override
@@ -628,7 +662,9 @@ abstract class _Attributes implements Attributes {
       required final String address,
       required final DateTime createdAt,
       required final DateTime updatedAt,
-      required final DateTime publishedAt}) = _$_Attributes;
+      required final DateTime publishedAt,
+      required final String photo,
+      required final String userId}) = _$_Attributes;
 
   factory _Attributes.fromJson(Map<String, dynamic> json) =
       _$_Attributes.fromJson;
@@ -649,6 +685,10 @@ abstract class _Attributes implements Attributes {
   DateTime get updatedAt;
   @override
   DateTime get publishedAt;
+  @override
+  String get photo;
+  @override
+  String get userId;
   @override
   @JsonKey(ignore: true)
   _$$_AttributesCopyWith<_$_Attributes> get copyWith =>

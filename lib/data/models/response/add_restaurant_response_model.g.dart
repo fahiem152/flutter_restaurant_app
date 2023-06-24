@@ -43,6 +43,8 @@ _$_Attributes _$$_AttributesFromJson(Map<String, dynamic> json) =>
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       publishedAt: DateTime.parse(json['publishedAt'] as String),
+      photo: json['photo'] as String,
+      userId: json['userId'] as String,
     );
 
 Map<String, dynamic> _$$_AttributesToJson(_$_Attributes instance) =>
@@ -55,6 +57,8 @@ Map<String, dynamic> _$$_AttributesToJson(_$_Attributes instance) =>
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'publishedAt': instance.publishedAt.toIso8601String(),
+      'photo': instance.photo,
+      'userId': instance.userId,
     };
 
 _$_Meta _$$_MetaFromJson(Map<String, dynamic> json) => _$_Meta();
