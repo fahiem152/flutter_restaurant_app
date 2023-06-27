@@ -21,7 +21,7 @@ AddRestaurantRequestModel _$AddRestaurantRequestModelFromJson(
 
 /// @nodoc
 mixin _$AddRestaurantRequestModel {
-  DataRestaurant get dataRestaurant => throw _privateConstructorUsedError;
+  DataRestaurant get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,9 +35,9 @@ abstract class $AddRestaurantRequestModelCopyWith<$Res> {
           $Res Function(AddRestaurantRequestModel) then) =
       _$AddRestaurantRequestModelCopyWithImpl<$Res, AddRestaurantRequestModel>;
   @useResult
-  $Res call({DataRestaurant dataRestaurant});
+  $Res call({DataRestaurant data});
 
-  $DataRestaurantCopyWith<$Res> get dataRestaurant;
+  $DataRestaurantCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -54,21 +54,21 @@ class _$AddRestaurantRequestModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dataRestaurant = null,
+    Object? data = null,
   }) {
     return _then(_value.copyWith(
-      dataRestaurant: null == dataRestaurant
-          ? _value.dataRestaurant
-          : dataRestaurant // ignore: cast_nullable_to_non_nullable
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
               as DataRestaurant,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $DataRestaurantCopyWith<$Res> get dataRestaurant {
-    return $DataRestaurantCopyWith<$Res>(_value.dataRestaurant, (value) {
-      return _then(_value.copyWith(dataRestaurant: value) as $Val);
+  $DataRestaurantCopyWith<$Res> get data {
+    return $DataRestaurantCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
     });
   }
 }
@@ -82,10 +82,10 @@ abstract class _$$_AddRestaurantRequestModelCopyWith<$Res>
       __$$_AddRestaurantRequestModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DataRestaurant dataRestaurant});
+  $Res call({DataRestaurant data});
 
   @override
-  $DataRestaurantCopyWith<$Res> get dataRestaurant;
+  $DataRestaurantCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -101,12 +101,12 @@ class __$$_AddRestaurantRequestModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dataRestaurant = null,
+    Object? data = null,
   }) {
     return _then(_$_AddRestaurantRequestModel(
-      dataRestaurant: null == dataRestaurant
-          ? _value.dataRestaurant
-          : dataRestaurant // ignore: cast_nullable_to_non_nullable
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
               as DataRestaurant,
     ));
   }
@@ -115,17 +115,17 @@ class __$$_AddRestaurantRequestModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_AddRestaurantRequestModel implements _AddRestaurantRequestModel {
-  const _$_AddRestaurantRequestModel({required this.dataRestaurant});
+  const _$_AddRestaurantRequestModel({required this.data});
 
   factory _$_AddRestaurantRequestModel.fromJson(Map<String, dynamic> json) =>
       _$$_AddRestaurantRequestModelFromJson(json);
 
   @override
-  final DataRestaurant dataRestaurant;
+  final DataRestaurant data;
 
   @override
   String toString() {
-    return 'AddRestaurantRequestModel(dataRestaurant: $dataRestaurant)';
+    return 'AddRestaurantRequestModel(data: $data)';
   }
 
   @override
@@ -133,13 +133,12 @@ class _$_AddRestaurantRequestModel implements _AddRestaurantRequestModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AddRestaurantRequestModel &&
-            (identical(other.dataRestaurant, dataRestaurant) ||
-                other.dataRestaurant == dataRestaurant));
+            (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, dataRestaurant);
+  int get hashCode => Object.hash(runtimeType, data);
 
   @JsonKey(ignore: true)
   @override
@@ -158,14 +157,13 @@ class _$_AddRestaurantRequestModel implements _AddRestaurantRequestModel {
 
 abstract class _AddRestaurantRequestModel implements AddRestaurantRequestModel {
   const factory _AddRestaurantRequestModel(
-          {required final DataRestaurant dataRestaurant}) =
-      _$_AddRestaurantRequestModel;
+      {required final DataRestaurant data}) = _$_AddRestaurantRequestModel;
 
   factory _AddRestaurantRequestModel.fromJson(Map<String, dynamic> json) =
       _$_AddRestaurantRequestModel.fromJson;
 
   @override
-  DataRestaurant get dataRestaurant;
+  DataRestaurant get data;
   @override
   @JsonKey(ignore: true)
   _$$_AddRestaurantRequestModelCopyWith<_$_AddRestaurantRequestModel>
@@ -340,7 +338,8 @@ class _$_DataRestaurant implements _DataRestaurant {
       required this.description,
       required this.latitude,
       required this.longitude,
-      required this.photo,
+      this.photo =
+          "https://img.freepik.com/free-photo/modern-interior-design-office_181624-21578.jpg",
       required this.address,
       required this.userId});
 
@@ -356,6 +355,7 @@ class _$_DataRestaurant implements _DataRestaurant {
   @override
   final String longitude;
   @override
+  @JsonKey()
   final String photo;
   @override
   final String address;
@@ -409,7 +409,7 @@ abstract class _DataRestaurant implements DataRestaurant {
       required final String description,
       required final String latitude,
       required final String longitude,
-      required final String photo,
+      final String photo,
       required final String address,
       required final int userId}) = _$_DataRestaurant;
 

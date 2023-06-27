@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'get_by_id_restaurant_bloc.dart';
+part of 'create_restaurant_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,59 +15,62 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$GetByIdRestaurantEvent {
+mixin _$CreateRestaurantEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int idRestaurant) getByIdRestaurant,
+    required TResult Function(AddRestaurantRequestModel model, XFile image)
+        createRestaurant,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(int idRestaurant)? getByIdRestaurant,
+    TResult? Function(AddRestaurantRequestModel model, XFile image)?
+        createRestaurant,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int idRestaurant)? getByIdRestaurant,
+    TResult Function(AddRestaurantRequestModel model, XFile image)?
+        createRestaurant,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetByIdRestaurant value) getByIdRestaurant,
+    required TResult Function(_CreateRestaurant value) createRestaurant,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_GetByIdRestaurant value)? getByIdRestaurant,
+    TResult? Function(_CreateRestaurant value)? createRestaurant,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetByIdRestaurant value)? getByIdRestaurant,
+    TResult Function(_CreateRestaurant value)? createRestaurant,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GetByIdRestaurantEventCopyWith<$Res> {
-  factory $GetByIdRestaurantEventCopyWith(GetByIdRestaurantEvent value,
-          $Res Function(GetByIdRestaurantEvent) then) =
-      _$GetByIdRestaurantEventCopyWithImpl<$Res, GetByIdRestaurantEvent>;
+abstract class $CreateRestaurantEventCopyWith<$Res> {
+  factory $CreateRestaurantEventCopyWith(CreateRestaurantEvent value,
+          $Res Function(CreateRestaurantEvent) then) =
+      _$CreateRestaurantEventCopyWithImpl<$Res, CreateRestaurantEvent>;
 }
 
 /// @nodoc
-class _$GetByIdRestaurantEventCopyWithImpl<$Res,
-        $Val extends GetByIdRestaurantEvent>
-    implements $GetByIdRestaurantEventCopyWith<$Res> {
-  _$GetByIdRestaurantEventCopyWithImpl(this._value, this._then);
+class _$CreateRestaurantEventCopyWithImpl<$Res,
+        $Val extends CreateRestaurantEvent>
+    implements $CreateRestaurantEventCopyWith<$Res> {
+  _$CreateRestaurantEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -84,7 +87,7 @@ abstract class _$$_StartedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_StartedCopyWithImpl<$Res>
-    extends _$GetByIdRestaurantEventCopyWithImpl<$Res, _$_Started>
+    extends _$CreateRestaurantEventCopyWithImpl<$Res, _$_Started>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
       : super(_value, _then);
@@ -97,7 +100,7 @@ class _$_Started implements _Started {
 
   @override
   String toString() {
-    return 'GetByIdRestaurantEvent.started()';
+    return 'CreateRestaurantEvent.started()';
   }
 
   @override
@@ -113,7 +116,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int idRestaurant) getByIdRestaurant,
+    required TResult Function(AddRestaurantRequestModel model, XFile image)
+        createRestaurant,
   }) {
     return started();
   }
@@ -122,7 +126,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(int idRestaurant)? getByIdRestaurant,
+    TResult? Function(AddRestaurantRequestModel model, XFile image)?
+        createRestaurant,
   }) {
     return started?.call();
   }
@@ -131,7 +136,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int idRestaurant)? getByIdRestaurant,
+    TResult Function(AddRestaurantRequestModel model, XFile image)?
+        createRestaurant,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -144,7 +150,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetByIdRestaurant value) getByIdRestaurant,
+    required TResult Function(_CreateRestaurant value) createRestaurant,
   }) {
     return started(this);
   }
@@ -153,7 +159,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_GetByIdRestaurant value)? getByIdRestaurant,
+    TResult? Function(_CreateRestaurant value)? createRestaurant,
   }) {
     return started?.call(this);
   }
@@ -162,7 +168,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetByIdRestaurant value)? getByIdRestaurant,
+    TResult Function(_CreateRestaurant value)? createRestaurant,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -172,100 +178,119 @@ class _$_Started implements _Started {
   }
 }
 
-abstract class _Started implements GetByIdRestaurantEvent {
+abstract class _Started implements CreateRestaurantEvent {
   const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-abstract class _$$_GetByIdRestaurantCopyWith<$Res> {
-  factory _$$_GetByIdRestaurantCopyWith(_$_GetByIdRestaurant value,
-          $Res Function(_$_GetByIdRestaurant) then) =
-      __$$_GetByIdRestaurantCopyWithImpl<$Res>;
+abstract class _$$_CreateRestaurantCopyWith<$Res> {
+  factory _$$_CreateRestaurantCopyWith(
+          _$_CreateRestaurant value, $Res Function(_$_CreateRestaurant) then) =
+      __$$_CreateRestaurantCopyWithImpl<$Res>;
   @useResult
-  $Res call({int idRestaurant});
+  $Res call({AddRestaurantRequestModel model, XFile image});
+
+  $AddRestaurantRequestModelCopyWith<$Res> get model;
 }
 
 /// @nodoc
-class __$$_GetByIdRestaurantCopyWithImpl<$Res>
-    extends _$GetByIdRestaurantEventCopyWithImpl<$Res, _$_GetByIdRestaurant>
-    implements _$$_GetByIdRestaurantCopyWith<$Res> {
-  __$$_GetByIdRestaurantCopyWithImpl(
-      _$_GetByIdRestaurant _value, $Res Function(_$_GetByIdRestaurant) _then)
+class __$$_CreateRestaurantCopyWithImpl<$Res>
+    extends _$CreateRestaurantEventCopyWithImpl<$Res, _$_CreateRestaurant>
+    implements _$$_CreateRestaurantCopyWith<$Res> {
+  __$$_CreateRestaurantCopyWithImpl(
+      _$_CreateRestaurant _value, $Res Function(_$_CreateRestaurant) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? idRestaurant = null,
+    Object? model = null,
+    Object? image = null,
   }) {
-    return _then(_$_GetByIdRestaurant(
-      null == idRestaurant
-          ? _value.idRestaurant
-          : idRestaurant // ignore: cast_nullable_to_non_nullable
-              as int,
+    return _then(_$_CreateRestaurant(
+      null == model
+          ? _value.model
+          : model // ignore: cast_nullable_to_non_nullable
+              as AddRestaurantRequestModel,
+      null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as XFile,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AddRestaurantRequestModelCopyWith<$Res> get model {
+    return $AddRestaurantRequestModelCopyWith<$Res>(_value.model, (value) {
+      return _then(_value.copyWith(model: value));
+    });
   }
 }
 
 /// @nodoc
 
-class _$_GetByIdRestaurant implements _GetByIdRestaurant {
-  const _$_GetByIdRestaurant(this.idRestaurant);
+class _$_CreateRestaurant implements _CreateRestaurant {
+  const _$_CreateRestaurant(this.model, this.image);
 
   @override
-  final int idRestaurant;
+  final AddRestaurantRequestModel model;
+  @override
+  final XFile image;
 
   @override
   String toString() {
-    return 'GetByIdRestaurantEvent.getByIdRestaurant(idRestaurant: $idRestaurant)';
+    return 'CreateRestaurantEvent.createRestaurant(model: $model, image: $image)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GetByIdRestaurant &&
-            (identical(other.idRestaurant, idRestaurant) ||
-                other.idRestaurant == idRestaurant));
+            other is _$_CreateRestaurant &&
+            (identical(other.model, model) || other.model == model) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, idRestaurant);
+  int get hashCode => Object.hash(runtimeType, model, image);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GetByIdRestaurantCopyWith<_$_GetByIdRestaurant> get copyWith =>
-      __$$_GetByIdRestaurantCopyWithImpl<_$_GetByIdRestaurant>(
-          this, _$identity);
+  _$$_CreateRestaurantCopyWith<_$_CreateRestaurant> get copyWith =>
+      __$$_CreateRestaurantCopyWithImpl<_$_CreateRestaurant>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int idRestaurant) getByIdRestaurant,
+    required TResult Function(AddRestaurantRequestModel model, XFile image)
+        createRestaurant,
   }) {
-    return getByIdRestaurant(idRestaurant);
+    return createRestaurant(model, image);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(int idRestaurant)? getByIdRestaurant,
+    TResult? Function(AddRestaurantRequestModel model, XFile image)?
+        createRestaurant,
   }) {
-    return getByIdRestaurant?.call(idRestaurant);
+    return createRestaurant?.call(model, image);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int idRestaurant)? getByIdRestaurant,
+    TResult Function(AddRestaurantRequestModel model, XFile image)?
+        createRestaurant,
     required TResult orElse(),
   }) {
-    if (getByIdRestaurant != null) {
-      return getByIdRestaurant(idRestaurant);
+    if (createRestaurant != null) {
+      return createRestaurant(model, image);
     }
     return orElse();
   }
@@ -274,52 +299,54 @@ class _$_GetByIdRestaurant implements _GetByIdRestaurant {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetByIdRestaurant value) getByIdRestaurant,
+    required TResult Function(_CreateRestaurant value) createRestaurant,
   }) {
-    return getByIdRestaurant(this);
+    return createRestaurant(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_GetByIdRestaurant value)? getByIdRestaurant,
+    TResult? Function(_CreateRestaurant value)? createRestaurant,
   }) {
-    return getByIdRestaurant?.call(this);
+    return createRestaurant?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetByIdRestaurant value)? getByIdRestaurant,
+    TResult Function(_CreateRestaurant value)? createRestaurant,
     required TResult orElse(),
   }) {
-    if (getByIdRestaurant != null) {
-      return getByIdRestaurant(this);
+    if (createRestaurant != null) {
+      return createRestaurant(this);
     }
     return orElse();
   }
 }
 
-abstract class _GetByIdRestaurant implements GetByIdRestaurantEvent {
-  const factory _GetByIdRestaurant(final int idRestaurant) =
-      _$_GetByIdRestaurant;
+abstract class _CreateRestaurant implements CreateRestaurantEvent {
+  const factory _CreateRestaurant(
+          final AddRestaurantRequestModel model, final XFile image) =
+      _$_CreateRestaurant;
 
-  int get idRestaurant;
+  AddRestaurantRequestModel get model;
+  XFile get image;
   @JsonKey(ignore: true)
-  _$$_GetByIdRestaurantCopyWith<_$_GetByIdRestaurant> get copyWith =>
+  _$$_CreateRestaurantCopyWith<_$_CreateRestaurant> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$GetByIdRestaurantState {
+mixin _$CreateRestaurantState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AddRestaurantResponseModel model) loaded,
-    required TResult Function(ErrorResponseModel message) error,
+    required TResult Function(ErrorResponseModel model) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -327,7 +354,7 @@ mixin _$GetByIdRestaurantState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AddRestaurantResponseModel model)? loaded,
-    TResult? Function(ErrorResponseModel message)? error,
+    TResult? Function(ErrorResponseModel model)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -335,7 +362,7 @@ mixin _$GetByIdRestaurantState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AddRestaurantResponseModel model)? loaded,
-    TResult Function(ErrorResponseModel message)? error,
+    TResult Function(ErrorResponseModel model)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -367,17 +394,17 @@ mixin _$GetByIdRestaurantState {
 }
 
 /// @nodoc
-abstract class $GetByIdRestaurantStateCopyWith<$Res> {
-  factory $GetByIdRestaurantStateCopyWith(GetByIdRestaurantState value,
-          $Res Function(GetByIdRestaurantState) then) =
-      _$GetByIdRestaurantStateCopyWithImpl<$Res, GetByIdRestaurantState>;
+abstract class $CreateRestaurantStateCopyWith<$Res> {
+  factory $CreateRestaurantStateCopyWith(CreateRestaurantState value,
+          $Res Function(CreateRestaurantState) then) =
+      _$CreateRestaurantStateCopyWithImpl<$Res, CreateRestaurantState>;
 }
 
 /// @nodoc
-class _$GetByIdRestaurantStateCopyWithImpl<$Res,
-        $Val extends GetByIdRestaurantState>
-    implements $GetByIdRestaurantStateCopyWith<$Res> {
-  _$GetByIdRestaurantStateCopyWithImpl(this._value, this._then);
+class _$CreateRestaurantStateCopyWithImpl<$Res,
+        $Val extends CreateRestaurantState>
+    implements $CreateRestaurantStateCopyWith<$Res> {
+  _$CreateRestaurantStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -394,7 +421,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$GetByIdRestaurantStateCopyWithImpl<$Res, _$_Initial>
+    extends _$CreateRestaurantStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -407,7 +434,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'GetByIdRestaurantState.initial()';
+    return 'CreateRestaurantState.initial()';
   }
 
   @override
@@ -425,7 +452,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AddRestaurantResponseModel model) loaded,
-    required TResult Function(ErrorResponseModel message) error,
+    required TResult Function(ErrorResponseModel model) error,
   }) {
     return initial();
   }
@@ -436,7 +463,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AddRestaurantResponseModel model)? loaded,
-    TResult? Function(ErrorResponseModel message)? error,
+    TResult? Function(ErrorResponseModel model)? error,
   }) {
     return initial?.call();
   }
@@ -447,7 +474,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AddRestaurantResponseModel model)? loaded,
-    TResult Function(ErrorResponseModel message)? error,
+    TResult Function(ErrorResponseModel model)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -494,7 +521,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements GetByIdRestaurantState {
+abstract class _Initial implements CreateRestaurantState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -507,7 +534,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<$Res>
-    extends _$GetByIdRestaurantStateCopyWithImpl<$Res, _$_Loading>
+    extends _$CreateRestaurantStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
@@ -520,7 +547,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'GetByIdRestaurantState.loading()';
+    return 'CreateRestaurantState.loading()';
   }
 
   @override
@@ -538,7 +565,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AddRestaurantResponseModel model) loaded,
-    required TResult Function(ErrorResponseModel message) error,
+    required TResult Function(ErrorResponseModel model) error,
   }) {
     return loading();
   }
@@ -549,7 +576,7 @@ class _$_Loading implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AddRestaurantResponseModel model)? loaded,
-    TResult? Function(ErrorResponseModel message)? error,
+    TResult? Function(ErrorResponseModel model)? error,
   }) {
     return loading?.call();
   }
@@ -560,7 +587,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AddRestaurantResponseModel model)? loaded,
-    TResult Function(ErrorResponseModel message)? error,
+    TResult Function(ErrorResponseModel model)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -607,7 +634,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements GetByIdRestaurantState {
+abstract class _Loading implements CreateRestaurantState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -623,7 +650,7 @@ abstract class _$$_LoadedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadedCopyWithImpl<$Res>
-    extends _$GetByIdRestaurantStateCopyWithImpl<$Res, _$_Loaded>
+    extends _$CreateRestaurantStateCopyWithImpl<$Res, _$_Loaded>
     implements _$$_LoadedCopyWith<$Res> {
   __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
       : super(_value, _then);
@@ -660,7 +687,7 @@ class _$_Loaded implements _Loaded {
 
   @override
   String toString() {
-    return 'GetByIdRestaurantState.loaded(model: $model)';
+    return 'CreateRestaurantState.loaded(model: $model)';
   }
 
   @override
@@ -686,7 +713,7 @@ class _$_Loaded implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AddRestaurantResponseModel model) loaded,
-    required TResult Function(ErrorResponseModel message) error,
+    required TResult Function(ErrorResponseModel model) error,
   }) {
     return loaded(model);
   }
@@ -697,7 +724,7 @@ class _$_Loaded implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AddRestaurantResponseModel model)? loaded,
-    TResult? Function(ErrorResponseModel message)? error,
+    TResult? Function(ErrorResponseModel model)? error,
   }) {
     return loaded?.call(model);
   }
@@ -708,7 +735,7 @@ class _$_Loaded implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AddRestaurantResponseModel model)? loaded,
-    TResult Function(ErrorResponseModel message)? error,
+    TResult Function(ErrorResponseModel model)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -755,7 +782,7 @@ class _$_Loaded implements _Loaded {
   }
 }
 
-abstract class _Loaded implements GetByIdRestaurantState {
+abstract class _Loaded implements CreateRestaurantState {
   const factory _Loaded(final AddRestaurantResponseModel model) = _$_Loaded;
 
   AddRestaurantResponseModel get model;
@@ -769,14 +796,14 @@ abstract class _$$_ErrorCopyWith<$Res> {
   factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
       __$$_ErrorCopyWithImpl<$Res>;
   @useResult
-  $Res call({ErrorResponseModel message});
+  $Res call({ErrorResponseModel model});
 
-  $ErrorResponseModelCopyWith<$Res> get message;
+  $ErrorResponseModelCopyWith<$Res> get model;
 }
 
 /// @nodoc
 class __$$_ErrorCopyWithImpl<$Res>
-    extends _$GetByIdRestaurantStateCopyWithImpl<$Res, _$_Error>
+    extends _$CreateRestaurantStateCopyWithImpl<$Res, _$_Error>
     implements _$$_ErrorCopyWith<$Res> {
   __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
       : super(_value, _then);
@@ -784,21 +811,21 @@ class __$$_ErrorCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = null,
+    Object? model = null,
   }) {
     return _then(_$_Error(
-      null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+      null == model
+          ? _value.model
+          : model // ignore: cast_nullable_to_non_nullable
               as ErrorResponseModel,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ErrorResponseModelCopyWith<$Res> get message {
-    return $ErrorResponseModelCopyWith<$Res>(_value.message, (value) {
-      return _then(_value.copyWith(message: value));
+  $ErrorResponseModelCopyWith<$Res> get model {
+    return $ErrorResponseModelCopyWith<$Res>(_value.model, (value) {
+      return _then(_value.copyWith(model: value));
     });
   }
 }
@@ -806,14 +833,14 @@ class __$$_ErrorCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Error implements _Error {
-  const _$_Error(this.message);
+  const _$_Error(this.model);
 
   @override
-  final ErrorResponseModel message;
+  final ErrorResponseModel model;
 
   @override
   String toString() {
-    return 'GetByIdRestaurantState.error(message: $message)';
+    return 'CreateRestaurantState.error(model: $model)';
   }
 
   @override
@@ -821,11 +848,11 @@ class _$_Error implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Error &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.model, model) || other.model == model));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, model);
 
   @JsonKey(ignore: true)
   @override
@@ -839,9 +866,9 @@ class _$_Error implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AddRestaurantResponseModel model) loaded,
-    required TResult Function(ErrorResponseModel message) error,
+    required TResult Function(ErrorResponseModel model) error,
   }) {
-    return error(message);
+    return error(model);
   }
 
   @override
@@ -850,9 +877,9 @@ class _$_Error implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AddRestaurantResponseModel model)? loaded,
-    TResult? Function(ErrorResponseModel message)? error,
+    TResult? Function(ErrorResponseModel model)? error,
   }) {
-    return error?.call(message);
+    return error?.call(model);
   }
 
   @override
@@ -861,11 +888,11 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AddRestaurantResponseModel model)? loaded,
-    TResult Function(ErrorResponseModel message)? error,
+    TResult Function(ErrorResponseModel model)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(message);
+      return error(model);
     }
     return orElse();
   }
@@ -908,10 +935,10 @@ class _$_Error implements _Error {
   }
 }
 
-abstract class _Error implements GetByIdRestaurantState {
-  const factory _Error(final ErrorResponseModel message) = _$_Error;
+abstract class _Error implements CreateRestaurantState {
+  const factory _Error(final ErrorResponseModel model) = _$_Error;
 
-  ErrorResponseModel get message;
+  ErrorResponseModel get model;
   @JsonKey(ignore: true)
   _$$_ErrorCopyWith<_$_Error> get copyWith =>
       throw _privateConstructorUsedError;

@@ -6,7 +6,7 @@ part 'add_restaurant_request_model.g.dart';
 @freezed
 class AddRestaurantRequestModel with _$AddRestaurantRequestModel {
   const factory AddRestaurantRequestModel({
-    required DataRestaurant dataRestaurant,
+    required DataRestaurant data,
   }) = _AddRestaurantRequestModel;
 
   factory AddRestaurantRequestModel.fromJson(Map<String, dynamic> json) =>
@@ -20,7 +20,10 @@ class DataRestaurant with _$DataRestaurant {
     required String description,
     required String latitude,
     required String longitude,
-    required String photo,
+    @Default(
+      "https://img.freepik.com/free-photo/modern-interior-design-office_181624-21578.jpg",
+    )
+    String photo,
     required String address,
     required int userId,
   }) = _DataRestaurant;

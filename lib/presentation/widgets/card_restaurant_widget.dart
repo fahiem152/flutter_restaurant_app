@@ -23,36 +23,40 @@ class CardRestaurantWidget extends StatelessWidget {
           color: Colors.blueGrey[50],
         ),
         width: MediaQuery.of(context).size.width * 0.4,
-        child: Column(
-          children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(12),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              ClipRRect(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(12),
+                ),
+                child: Image.network(restaurant.attributes.photo == null
+                    ? 'https://i.redd.it/mn9c32es4zi21.png'
+                    : restaurant.attributes.photo!),
               ),
-              child: Image.network(restaurant.attributes.photo),
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            Text(
-              restaurant.attributes.name,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+              const SizedBox(
+                height: 12,
               ),
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            Text(
-              restaurant.attributes.description,
-              style: const TextStyle(
-                fontSize: 16,
+              Text(
+                restaurant.attributes.name,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
+              const SizedBox(
+                height: 4,
+              ),
+              Text(
+                restaurant.attributes.description,
+                style: const TextStyle(
+                  fontSize: 16,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
         ),
       ),
     );

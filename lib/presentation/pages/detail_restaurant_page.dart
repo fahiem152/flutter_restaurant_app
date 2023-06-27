@@ -131,8 +131,8 @@ class _DetailRestaurantPageState extends State<DetailRestaurantPage> {
                 ],
               );
             },
-            error: (message) {
-              return Text(message);
+            error: (model) {
+              return Text(model.error.message);
             },
           );
         },

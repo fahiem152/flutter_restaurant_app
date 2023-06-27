@@ -72,6 +72,20 @@ class _MainPageState extends State<MainPage> {
           );
         },
       )),
+      // body: SafeArea(child: BlocBuilder<NavigationBloc, NavigationState>(
+      //   builder: (context, state) {
+      //     return IndexedStack(
+      //       index: state.maybeMap(
+      //         navigationIndex: (value) => value.index,
+      //         orElse: () => 0,
+      //       ),
+      //       children: [
+      //         HomePage(),
+      //         MyRestaurantPage(),
+      //       ],
+      //     );
+      //   },
+      // )),
     );
   }
 }
