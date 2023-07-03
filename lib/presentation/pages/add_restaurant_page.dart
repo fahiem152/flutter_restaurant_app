@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_restaurant/bloc/get_all_restaurant/get_all_restaurant_bloc.dart';
+import 'package:flutter_restaurant/bloc/get_restaurant_by_uesr_id/get_restaurant_by_user_id_bloc.dart';
+import 'package:flutter_restaurant/data/local_datasource/auth_local_datasource.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:image_picker/image_picker.dart';
@@ -196,10 +198,12 @@ class _AddRestaurantPageState extends State<AddRestaurantPage> {
                     longitudeController!.clear();
                     addressController!.clear();
                     // userIdController!.clear();
+                    context.read<GetRestaurantByUserIdBloc>().add(
+                        GetRestaurantByUserIdEvent.getRestaurantByUserId());
                     context.pop();
-                    context
-                        .read<GetAllRestaurantBloc>()
-                        .add(const GetAllRestaurantEvent.getAllRestaurant());
+                    // context
+                    //     .read<GetAllRestaurantBloc>()
+                    //     .add(const GetAllRestaurantEvent.getAllRestaurant());
                   },
                   error: (message) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -214,7 +218,8 @@ class _AddRestaurantPageState extends State<AddRestaurantPage> {
                 return state.maybeWhen(
                   orElse: () {
                     return ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        final userId = await AuthLocalDataSource().getUserId();
                         final addRestauranModel = AddRestaurantRequestModel(
                           data: DataRestaurant(
                             name: nameController!.text,
@@ -222,7 +227,7 @@ class _AddRestaurantPageState extends State<AddRestaurantPage> {
                             latitude: latitudeController!.text,
                             longitude: longitudeController!.text,
                             address: addressController!.text,
-                            userId: 1,
+                            userId: userId,
                           ),
                         );
                         context.read<CreateRestaurantBloc>().add(

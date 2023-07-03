@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_restaurant/bloc/get_by_id_restaurant/get_by_id_restaurant_bloc.dart';
+import 'package:flutter_restaurant/bloc/get_restaurant_by_uesr_id/get_restaurant_by_user_id_bloc.dart';
 
 import 'package:flutter_restaurant/bloc/login/login_bloc.dart';
 import 'package:flutter_restaurant/bloc/navigation/navigation_bloc.dart';
@@ -56,12 +57,15 @@ class MyApp extends StatelessWidget {
           create: (context) =>
               CreateRestaurantBloc(RestaurantRemoteDataSource()),
         ),
+        BlocProvider(
+          create: (context) =>
+              GetRestaurantByUserIdBloc(RestaurantRemoteDataSource()),
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
         routerConfig: GoRouter(
-          initialLocation: LoginPage.routeName,
+          initialLocation: SplashPage.routeName,
           routes: [
             GoRoute(
               path: LoginPage.routeName,
@@ -75,15 +79,16 @@ class MyApp extends StatelessWidget {
               path: HomePage.routeName,
               builder: (context, state) => const HomePage(),
             ),
-            GoRoute(
-              path: MainPage.routeName,
-              builder: (context, state) => const MainPage(),
-            ),
+            // GoRoute(
+            //   path: MainPage.routeName,
+            //   builder: (context, state) => const MainPage(),
+            // ),
             GoRoute(
                 path: MyRestaurantPage.routeName,
                 builder: (context, state) => const MyRestaurantPage(),
                 redirect: (context, state) async {
                   final isLogin = await AuthLocalDataSource().isLogin();
+                  debugPrint('isLogin: $isLogin');
                   if (isLogin) {
                     return null;
                   } else {

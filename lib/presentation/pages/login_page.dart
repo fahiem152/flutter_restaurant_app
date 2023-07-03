@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restaurant/bloc/login/login_bloc.dart';
 import 'package:flutter_restaurant/data/models/request/login_request_model.dart';
+import 'package:flutter_restaurant/presentation/pages/home_page.dart';
 import 'package:flutter_restaurant/presentation/pages/main_page.dart';
+import 'package:flutter_restaurant/presentation/pages/register_page.dart';
 
 import 'package:go_router/go_router.dart';
 
@@ -100,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                       content: Text(model.user.id.toString()),
                     ),
                   );
-                  context.push(MainPage.routeName);
+                  context.push(HomePage.routeName);
                 },
               );
             },
@@ -126,7 +128,13 @@ class _LoginPageState extends State<LoginPage> {
                 },
               );
             },
-          )
+          ),
+          ElevatedButton(
+            onPressed: () => context.push(RegisterPage.routeName),
+            child: Text(
+              "Register",
+            ),
+          ),
         ],
       ),
     ));

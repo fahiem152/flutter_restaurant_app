@@ -47,6 +47,32 @@ class RestaurantRemoteDataSource {
     }
   }
 
+  Future<Either<ErrorResponseModel, RestaurantsResponseModel>>
+      getRestaurantByUserId(int userId) async {
+    final response = await http.get(
+      Uri.parse('${Constants.baseUrl}/api/restaurants?filters[userId]=$userId'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return Right(
+        RestaurantsResponseModel.fromJson(
+          jsonDecode(response.body),
+        ),
+      );
+    } else {
+      return Left(
+        ErrorResponseModel.fromJson(
+          jsonDecode(
+            response.body,
+          ),
+        ),
+      );
+    }
+  }
+
   Future<Either<ErrorResponseModel, AddRestaurantResponseModel>>
       getByIdRestaurant(int idRestaurant) async {
     final response = await http
@@ -69,20 +95,14 @@ class RestaurantRemoteDataSource {
   Future<Either<ErrorResponseModel, UploadImageResponseModel>> uploadImage(
       XFile image) async {
     final getToken = await AuthLocalDataSource().getToken();
-    debugPrint('token: $getToken');
+    debugPrint('token upload image: $getToken');
+    final header = <String, String>{
+      'Authorization': 'Bearer $getToken',
+    };
     var request = http.MultipartRequest(
       'POST',
       Uri.parse('${Constants.baseUrl}/api/upload'),
     );
-    // request.headers.addAll({
-    //   'Content-Type': 'multipart/form-data',
-    //   'Authorization':
-    //       'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImlhdCI6MTY4Nzc4NzIzMywiZXhwIjoxNjkwMzc5MjMzfQ.NWziyBjOlZsKFQS0QcqEX0kmubI5FgAeflDnsfyNh10',
-    // });
-    request.headers['Authorization'] = 'Bearer $getToken';
-    // request.headers['Authorization'] =
-    //     'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImlhdCI6MTY4Nzc4NzIzMywiZXhwIjoxNjkwMzc5MjMzfQ.NWziyBjOlZsKFQS0QcqEX0kmubI5FgAeflDnsfyNh10';
-    // request.headers['Authorization'] = 'Bearer $getToken';
 
     final bytes = await image.readAsBytes();
     final multiPartFile = http.MultipartFile.fromBytes(
@@ -90,7 +110,9 @@ class RestaurantRemoteDataSource {
       bytes,
       filename: image.name,
     );
+
     request.files.add(multiPartFile);
+    request.headers.addAll(header);
     http.StreamedResponse response = await request.send();
     final Uint8List responseList = await response.stream.toBytes();
     final String responseData = String.fromCharCodes(responseList);
@@ -127,8 +149,6 @@ class RestaurantRemoteDataSource {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $getToken',
-          // 'Authorization':
-          //     'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImlhdCI6MTY4Nzc4NzIzMywiZXhwIjoxNjkwMzc5MjMzfQ.NWziyBjOlZsKFQS0QcqEX0kmubI5FgAeflDnsfyNh10',
         },
       );
       debugPrint('responseData: ${response.statusCode}');

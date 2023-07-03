@@ -23,6 +23,13 @@ class AuthLocalDataSource {
     }
   }
 
+  Future<int> getUserId() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    final authJson = pref.getString('auth') ?? '';
+    final authData = AuthResponseModel.fromJson(jsonDecode(authJson));
+    return authData.user.id;
+  }
+
   // bool isValidToken(String token) {
   //   // Lakukan validasi token di sini
   //   // Misalnya, Anda dapat menggunakan library JWT decoding
@@ -48,5 +55,10 @@ class AuthLocalDataSource {
     }
 
     return false;
+  }
+
+  Future<bool> removeAuthData() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    return pref.remove('auth');
   }
 }

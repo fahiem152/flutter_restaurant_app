@@ -27,21 +27,25 @@ class CreateRestaurantBloc
       //   (r) => emit(_Loaded(r)),
       // );
       final uploadResult = await datasource.uploadImage(event.image);
-      uploadResult.fold(
-        (l) => emit(_Error(l)),
-        (dataUpload) async {
-          final result = await datasource.createRestaurant(
-            event.model.copyWith(
-              data: event.model.data
-                  .copyWith(photo: '${Constants.baseUrl}${dataUpload.url}'),
-            ),
-          );
-          result.fold(
+      await Future.sync(() => uploadResult.fold(
             (l) => emit(_Error(l)),
-            (r) => emit(_Loaded(r)),
-          );
-        },
-      );
+            (dataUpload) async {
+              final result = await datasource.createRestaurant(
+                  AddRestaurantRequestModel(
+                      data: event.model.data.copyWith(
+                          photo: '${Constants.baseUrl}${dataUpload.url!}')));
+              // final result = await datasource.createRestaurant(
+              //   event.model.copyWith(
+              //     data: event.model.data
+              //         .copyWith(photo: '${Constants.baseUrl}${dataUpload.url}'),
+              //   ),
+              // );
+              result.fold(
+                (l) => emit(_Error(l)),
+                (r) => emit(_Loaded(r)),
+              );
+            },
+          ));
     });
   }
 }
