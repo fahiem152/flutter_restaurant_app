@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restaurant/bloc/get_restaurant_by_uesr_id/get_restaurant_by_user_id_bloc.dart';
-import 'package:flutter_restaurant/data/local_datasource/auth_local_datasource.dart';
+import 'package:flutter_restaurant/common/color.constant.dart';
+import 'package:flutter_restaurant/common/textstyle.constant.dart';
+
 import 'package:flutter_restaurant/data/models/response/restaurants_response_model.dart';
 import 'package:flutter_restaurant/presentation/pages/add_restaurant_page.dart';
 import 'package:flutter_restaurant/presentation/pages/detail_restaurant_page.dart';
 import 'package:flutter_restaurant/presentation/pages/home_page.dart';
-import 'package:flutter_restaurant/presentation/pages/login_page.dart';
+
+import 'package:flutter_restaurant/presentation/pages/profile_page.dart';
+import 'package:flutter_restaurant/presentation/pages/search_page.dart';
 import 'package:go_router/go_router.dart';
 
 class MyRestaurantPage extends StatefulWidget {
@@ -23,30 +27,62 @@ class _MyRestaurantPageState extends State<MyRestaurantPage> {
     super.initState();
     context
         .read<GetRestaurantByUserIdBloc>()
-        .add(GetRestaurantByUserIdEvent.getRestaurantByUserId());
+        .add(const GetRestaurantByUserIdEvent.getRestaurantByUserId());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: ColorConstant.red,
         automaticallyImplyLeading: false,
-        title: const Text('My Restaurant'),
+        title: Text(
+          'My Restaurant',
+          style: TextStyleConstant.h4,
+        ),
+        // centerTitle: true,
         actions: [
-          IconButton(
-              onPressed: () async {
-                await AuthLocalDataSource().removeAuthData();
-                context.go(LoginPage.routeName);
-              },
-              icon: Icon(Icons.logout)),
+          InkWell(
+            onTap: () => context.push(AddRestaurantPage.routeName),
+            child: Container(
+              margin: const EdgeInsets.all(
+                8,
+              ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 12,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(
+                  12,
+                ),
+                color: ColorConstant.white,
+              ),
+              child: Center(
+                child: Text(
+                  'Add Resto',
+                  style: TextStyleConstant.textReguler6.copyWith(
+                    color: ColorConstant.red,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          // IconButton(
+          //     onPressed: () async {
+          //       await AuthLocalDataSource().removeAuthData();
+          //       context.go(LoginPage.routeName);
+          //     },
+          //     icon: Icon(Icons.logout)),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.push(AddRestaurantPage.routeName);
-        },
-        child: Icon(Icons.add),
-      ),
+
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     context.push(AddRestaurantPage.routeName);
+      //   },
+      //   child: Icon(Icons.add),
+      // ),
       body: SafeArea(
         child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -74,20 +110,105 @@ class _MyRestaurantPageState extends State<MyRestaurantPage> {
               },
             )),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: 1,
-        onTap: (value) {
-          if (value == 0) {
-            context.push(HomePage.routeName);
-          }
-        },
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.restaurant), label: 'All Restaurant'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person), label: 'My Account'),
-        ],
+      bottomNavigationBar: Container(
+        height: MediaQuery.of(context).size.height / 8.6,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15),
+          ),
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 3,
+              spreadRadius: 0,
+              offset: const Offset(0, 1),
+              color: Colors.black.withOpacity(0.2),
+            ),
+            BoxShadow(
+              blurRadius: 5,
+              spreadRadius: 0,
+              offset: const Offset(0, 2),
+              color: Colors.black.withOpacity(0.2),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 4,
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(
+                      Icons.home_rounded,
+                      color: ColorConstant.red4,
+                    ),
+                    onPressed: () => context.push(
+                      HomePage.routeName,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 4,
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(
+                      Icons.restaurant_rounded,
+                      color: ColorConstant.red4,
+                    ),
+                    onPressed: () => context.push(
+                      SearchPage.routeName,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: ColorConstant.red3,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              width: MediaQuery.of(context).size.width / 4,
+              child: Row(
+                children: [
+                  IconButton(
+                      icon: const Icon(
+                        Icons.restaurant_menu_rounded,
+                        color: ColorConstant.red,
+                      ),
+                      onPressed: () {}),
+                  Text(
+                    'Resto',
+                    style: TextStyleConstant.p1
+                        .copyWith(color: ColorConstant.black),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 4,
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(
+                      Icons.person_rounded,
+                      color: ColorConstant.red4,
+                    ),
+                    onPressed: () => context.push(
+                      ProfilePage.routeName,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
 
@@ -119,12 +240,29 @@ class RestaurantCard extends StatelessWidget {
       onTap: () => context.push('${DetailRestaurantPage.routeName}/${data.id}'),
       child: Card(
         child: ListTile(
-          title: Text(data.attributes.name),
-          subtitle: Text(data.attributes.description),
-          leading: CircleAvatar(
-            radius: 18,
-            child: Image.network(
-                data.attributes.photo ?? 'https://picsum.photos/200/300'),
+          title: Text(
+            data.attributes.name,
+            style: TextStyleConstant.textSemiBold5,
+          ),
+          subtitle: Text(
+            data.attributes.address,
+            style: TextStyleConstant.textReguler6,
+          ),
+          leading: Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                8,
+              ),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                data.attributes.photo ?? 'https://picsum.photos/200/300',
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
         ),
       ),

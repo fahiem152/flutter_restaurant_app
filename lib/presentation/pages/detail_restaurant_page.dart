@@ -68,13 +68,13 @@ class _DetailRestaurantPageState extends State<DetailRestaurantPage> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('idRestaurant ' + widget.idRestaurant.toString());
+    debugPrint('idRestaurant ${widget.idRestaurant}');
     return Scaffold(
       body: BlocBuilder<GetByIdRestaurantBloc, GetByIdRestaurantState>(
         builder: (context, state) {
           return state.maybeWhen(
             orElse: () {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             },
             loaded: (model) {
               final lat = double.parse(model.data.attributes.latitude);
@@ -94,7 +94,7 @@ class _DetailRestaurantPageState extends State<DetailRestaurantPage> {
                           padding: const EdgeInsets.all(12),
                           child: CircleAvatar(
                             backgroundColor: Colors.black.withOpacity(0.5),
-                            child: Center(
+                            child: const Center(
                               child: Icon(
                                 Icons.arrow_back_ios_new,
                                 color: Colors.white,
@@ -111,7 +111,7 @@ class _DetailRestaurantPageState extends State<DetailRestaurantPage> {
                   Text(
                     model.data.attributes.description,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   SizedBox(

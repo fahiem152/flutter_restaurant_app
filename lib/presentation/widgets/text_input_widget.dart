@@ -39,7 +39,8 @@ class _TextInputWidgetState extends State<TextInputWidget> {
                         border: InputBorder.none,
                         focusedBorder: InputBorder.none,
                         hintText: widget.pleaceholder,
-                        hintStyle: TextStyle(color: Colors.grey, fontSize: 12)),
+                        hintStyle:
+                            const TextStyle(color: Colors.grey, fontSize: 12)),
                   ),
                 ),
                 InkWell(
@@ -63,7 +64,7 @@ class _TextInputWidgetState extends State<TextInputWidget> {
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 hintText: widget.pleaceholder,
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   color: Colors.grey,
                   fontSize: 12,
                 ),

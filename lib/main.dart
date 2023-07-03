@@ -14,9 +14,11 @@ import 'package:flutter_restaurant/presentation/pages/add_restaurant_page.dart';
 import 'package:flutter_restaurant/presentation/pages/detail_restaurant_page.dart';
 import 'package:flutter_restaurant/presentation/pages/home_page.dart';
 import 'package:flutter_restaurant/presentation/pages/login_page.dart';
-import 'package:flutter_restaurant/presentation/pages/main_page.dart';
+
 import 'package:flutter_restaurant/presentation/pages/my_restaurant_page.dart';
+import 'package:flutter_restaurant/presentation/pages/profile_page.dart';
 import 'package:flutter_restaurant/presentation/pages/register_page.dart';
+import 'package:flutter_restaurant/presentation/pages/search_page.dart';
 import 'package:flutter_restaurant/presentation/pages/splash_page.dart';
 
 import 'package:go_router/go_router.dart';
@@ -84,17 +86,18 @@ class MyApp extends StatelessWidget {
             //   builder: (context, state) => const MainPage(),
             // ),
             GoRoute(
-                path: MyRestaurantPage.routeName,
-                builder: (context, state) => const MyRestaurantPage(),
-                redirect: (context, state) async {
-                  final isLogin = await AuthLocalDataSource().isLogin();
-                  debugPrint('isLogin: $isLogin');
-                  if (isLogin) {
-                    return null;
-                  } else {
-                    return LoginPage.routeName;
-                  }
-                }),
+              path: MyRestaurantPage.routeName,
+              builder: (context, state) => const MyRestaurantPage(),
+              redirect: (context, state) async {
+                final isLogin = await AuthLocalDataSource().isLogin();
+                debugPrint('isLogin: $isLogin');
+                if (isLogin) {
+                  return null;
+                } else {
+                  return LoginPage.routeName;
+                }
+              },
+            ),
             GoRoute(
               path: '${DetailRestaurantPage.routeName}/:idRestaurant',
               builder: (context, state) => DetailRestaurantPage(
@@ -109,6 +112,22 @@ class MyApp extends StatelessWidget {
               path: AddRestaurantPage.routeName,
               builder: (context, state) => const AddRestaurantPage(),
             ),
+            GoRoute(
+              path: SearchPage.routeName,
+              builder: (context, state) => const SearchPage(),
+            ),
+            GoRoute(
+                path: ProfilePage.routeName,
+                builder: (context, state) => const ProfilePage(),
+                redirect: (context, state) async {
+                  final isLogin = await AuthLocalDataSource().isLogin();
+                  debugPrint('isLogin: $isLogin');
+                  if (isLogin) {
+                    return null;
+                  } else {
+                    return LoginPage.routeName;
+                  }
+                }),
           ],
         ),
       ),

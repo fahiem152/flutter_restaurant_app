@@ -28,4 +28,52 @@ class TextStyleConstant {
     fontSize: 12,
     fontWeight: medium,
   );
+  static TextStyle textSemiBold1 = GoogleFonts.poppins(
+    fontSize: 32,
+    fontWeight: semiBold,
+  );
+  static TextStyle textSemiBold2 = GoogleFonts.poppins(
+    fontSize: 28,
+    fontWeight: semiBold,
+  );
+  static TextStyle textSemiBold3 = GoogleFonts.poppins(
+    fontSize: 24,
+    fontWeight: semiBold,
+  );
+  static TextStyle textSemiBold4 = GoogleFonts.poppins(
+    fontSize: 20,
+    fontWeight: semiBold,
+  );
+  static TextStyle textSemiBold5 = GoogleFonts.poppins(
+    fontSize: 16,
+    fontWeight: semiBold,
+  );
+  static TextStyle textSemiBold6 = GoogleFonts.poppins(
+    fontSize: 12,
+    fontWeight: semiBold,
+  );
+  static TextStyle textReguler1 = GoogleFonts.poppins(
+    fontSize: 32,
+    fontWeight: reguler,
+  );
+  static TextStyle textReguler2 = GoogleFonts.poppins(
+    fontSize: 28,
+    fontWeight: reguler,
+  );
+  static TextStyle textReguler3 = GoogleFonts.poppins(
+    fontSize: 24,
+    fontWeight: reguler,
+  );
+  static TextStyle textReguler4 = GoogleFonts.poppins(
+    fontSize: 20,
+    fontWeight: reguler,
+  );
+  static TextStyle textReguler5 = GoogleFonts.poppins(
+    fontSize: 16,
+    fontWeight: reguler,
+  );
+  static TextStyle textReguler6 = GoogleFonts.poppins(
+    fontSize: 12,
+    fontWeight: semiBold,
+  );
 }

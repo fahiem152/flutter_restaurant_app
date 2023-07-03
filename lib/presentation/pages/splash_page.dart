@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_restaurant/bloc/get_all_restaurant/get_all_restaurant_bloc.dart';
 import 'package:flutter_restaurant/common/color.constant.dart';
 import 'package:flutter_restaurant/common/textstyle.constant.dart';
 import 'package:flutter_restaurant/data/local_datasource/auth_local_datasource.dart';
@@ -20,7 +18,7 @@ class _SplashPageState extends State<SplashPage> {
     final token = await AuthLocalDataSource().getToken();
     debugPrint('token: $token');
     Future.delayed(
-      Duration(milliseconds: 1000),
+      const Duration(milliseconds: 1000),
       () {
         context.go(HomePage.routeName);
       },

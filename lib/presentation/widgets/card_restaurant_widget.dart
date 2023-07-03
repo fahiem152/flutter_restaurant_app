@@ -26,13 +26,19 @@ class CardRestaurantWidget extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(12),
+              SizedBox(
+                width: double.infinity,
+                height: 100,
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                  child: Image.network(
+                      restaurant.attributes.photo == null
+                          ? 'https://i.redd.it/mn9c32es4zi21.png'
+                          : restaurant.attributes.photo!,
+                      fit: BoxFit.cover),
                 ),
-                child: Image.network(restaurant.attributes.photo == null
-                    ? 'https://i.redd.it/mn9c32es4zi21.png'
-                    : restaurant.attributes.photo!),
               ),
               const SizedBox(
                 height: 12,
