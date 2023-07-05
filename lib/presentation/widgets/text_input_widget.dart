@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class TextInputWidget extends StatefulWidget {
@@ -5,12 +6,14 @@ class TextInputWidget extends StatefulWidget {
   final String pleaceholder;
   final bool isPassword;
   bool isPasswordVisible;
+  int? maxLines = 1;
   TextInputWidget({
     Key? key,
     required this.controller,
     required this.pleaceholder,
     required this.isPassword,
     this.isPasswordVisible = true,
+    this.maxLines,
   }) : super(key: key);
 
   @override
@@ -69,6 +72,7 @@ class _TextInputWidgetState extends State<TextInputWidget> {
                   fontSize: 12,
                 ),
               ),
+              maxLines: widget.maxLines,
             ),
     );
   }

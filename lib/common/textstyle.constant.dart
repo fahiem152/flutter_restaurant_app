@@ -28,6 +28,30 @@ class TextStyleConstant {
     fontSize: 12,
     fontWeight: medium,
   );
+  static TextStyle textBold1 = GoogleFonts.poppins(
+    fontSize: 32,
+    fontWeight: bold,
+  );
+  static TextStyle textBold2 = GoogleFonts.poppins(
+    fontSize: 28,
+    fontWeight: bold,
+  );
+  static TextStyle textBold3 = GoogleFonts.poppins(
+    fontSize: 24,
+    fontWeight: bold,
+  );
+  static TextStyle textBold4 = GoogleFonts.poppins(
+    fontSize: 20,
+    fontWeight: bold,
+  );
+  static TextStyle textBold5 = GoogleFonts.poppins(
+    fontSize: 16,
+    fontWeight: bold,
+  );
+  static TextStyle textBold6 = GoogleFonts.poppins(
+    fontSize: 12,
+    fontWeight: bold,
+  );
   static TextStyle textSemiBold1 = GoogleFonts.poppins(
     fontSize: 32,
     fontWeight: semiBold,
@@ -51,6 +75,30 @@ class TextStyleConstant {
   static TextStyle textSemiBold6 = GoogleFonts.poppins(
     fontSize: 12,
     fontWeight: semiBold,
+  );
+  static TextStyle textMedium1 = GoogleFonts.poppins(
+    fontSize: 32,
+    fontWeight: medium,
+  );
+  static TextStyle textMedium2 = GoogleFonts.poppins(
+    fontSize: 28,
+    fontWeight: medium,
+  );
+  static TextStyle textMedium3 = GoogleFonts.poppins(
+    fontSize: 24,
+    fontWeight: medium,
+  );
+  static TextStyle textMedium4 = GoogleFonts.poppins(
+    fontSize: 20,
+    fontWeight: medium,
+  );
+  static TextStyle textMedium5 = GoogleFonts.poppins(
+    fontSize: 16,
+    fontWeight: medium,
+  );
+  static TextStyle textMedium6 = GoogleFonts.poppins(
+    fontSize: 12,
+    fontWeight: medium,
   );
   static TextStyle textReguler1 = GoogleFonts.poppins(
     fontSize: 32,

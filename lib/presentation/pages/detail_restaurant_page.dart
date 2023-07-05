@@ -1,7 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_restaurant/bloc/get_by_id_restaurant/get_by_id_restaurant_bloc.dart';
+import 'package:flutter_restaurant/common/color.constant.dart';
+import 'package:flutter_restaurant/common/textstyle.constant.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -81,54 +84,163 @@ class _DetailRestaurantPageState extends State<DetailRestaurantPage> {
               final lng = double.parse(model.data.attributes.longitude);
               print('latlng: $lat, $lng');
               createMarker(lat, lng, model.data.attributes.address);
-              return ListView(
-                children: [
-                  Stack(
-                    children: [
-                      Image.network(model.data.attributes.photo),
-                      InkWell(
-                        onTap: () {
-                          context.pop();
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.black.withOpacity(0.5),
-                            child: const Center(
-                              child: Icon(
-                                Icons.arrow_back_ios_new,
-                                color: Colors.white,
+              return SafeArea(
+                child: ListView(
+                  children: [
+                    Stack(
+                      children: [
+                        Image.network(model.data.attributes.photo),
+                        InkWell(
+                          onTap: () {
+                            context.pop();
+                          },
+                          child: Container(
+                            width: 45,
+                            height: 45,
+                            margin: const EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: ColorConstant.red4.withOpacity(
+                                0.5,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                8,
+                              ),
+                            ),
+                            child: const Icon(
+                              Icons.arrow_back_ios_new,
+                              color: ColorConstant.white,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    Container(
+                      color: ColorConstant.white,
+                      padding: EdgeInsets.all(
+                        24,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 12,
+                                  horizontal: 16,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: ColorConstant.red3,
+                                  borderRadius: BorderRadius.circular(
+                                    8,
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Popular',
+                                    style:
+                                        TextStyleConstant.textMedium6.copyWith(
+                                      color: ColorConstant.red,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: ColorConstant.red3,
+                                  borderRadius: BorderRadius.circular(
+                                    8,
+                                  ),
+                                ),
+                                child: Center(
+                                  child: IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.favorite,
+                                      color: ColorConstant.red,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            model.data.attributes.name,
+                            style: TextStyleConstant.textMedium2.copyWith(
+                              color: ColorConstant.black,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          RatingBar.builder(
+                            itemSize: 20,
+                            initialRating: 3.5,
+                            minRating: 1,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                            itemBuilder: (context, _) => Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            onRatingUpdate: (rating) {
+                              print(rating);
+                            },
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          Text(
+                            model.data.attributes.description,
+                            style: TextStyleConstant.textMedium6.copyWith(
+                              color: ColorConstant.black2,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          SizedBox(
+                            height: 300,
+                            child: Card(
+                              child: GoogleMap(
+                                mapType: MapType.normal,
+                                markers: markers,
+                                initialCameraPosition: CameraPosition(
+                                  target: LatLng(
+                                    lat,
+                                    lng,
+                                  ),
+                                  zoom: 15,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      )
-                    ],
-                  ),
-                  Text(
-                    model.data.attributes.name,
-                  ),
-                  Text(
-                    model.data.attributes.description,
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  SizedBox(
-                    height: 500,
-                    child: GoogleMap(
-                      mapType: MapType.normal,
-                      markers: markers,
-                      initialCameraPosition: CameraPosition(
-                        target: LatLng(
-                          lat,
-                          lng,
-                        ),
-                        zoom: 15,
+                          const SizedBox(
+                            height: 28,
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Center(
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                child: Text(
+                                  'Directions',
+                                  style: TextStyleConstant.textBold5.copyWith(
+                                    color: ColorConstant.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
                       ),
                     ),
-                  )
-                ],
+                  ],
+                ),
               );
             },
             error: (model) {

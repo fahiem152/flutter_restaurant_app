@@ -161,9 +161,12 @@ class _LoginPageState extends State<LoginPage> {
                                 .read<LoginBloc>()
                                 .add(LoginEvent.login(loginModel));
                           },
-                          child: Text(
-                            'Login',
-                            style: TextStyleConstant.textSemiBold5,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 8),
+                            child: Text(
+                              'Login',
+                              style: TextStyleConstant.textSemiBold5,
+                            ),
                           ),
                         ),
                       );
@@ -189,7 +192,7 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () => context.push(RegisterPage.routeName),
                   child: Text(
                     "Register",
-                    style: TextStyleConstant.textSemiBold5,
+                    style: TextStyleConstant.textReguler6,
                   ),
                 ),
               ),

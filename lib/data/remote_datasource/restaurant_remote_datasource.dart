@@ -55,6 +55,7 @@ class RestaurantRemoteDataSource {
         'Content-Type': 'application/json; charset=UTF-8',
       },
     );
+    print('Response Body getRestaurantByUserId:  ${response.body}');
 
     if (response.statusCode == 200) {
       return Right(

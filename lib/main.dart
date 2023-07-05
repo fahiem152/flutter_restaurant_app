@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_restaurant/bloc/get_by_id_restaurant/get_by_id_restaurant_bloc.dart';
+import 'package:flutter_restaurant/bloc/get_location/get_location_bloc.dart';
 import 'package:flutter_restaurant/bloc/get_restaurant_by_uesr_id/get_restaurant_by_user_id_bloc.dart';
 
 import 'package:flutter_restaurant/bloc/login/login_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_restaurant/bloc/navigation/navigation_bloc.dart';
 import 'package:flutter_restaurant/bloc/register/register_bloc.dart';
 import 'package:flutter_restaurant/data/local_datasource/auth_local_datasource.dart';
 import 'package:flutter_restaurant/data/remote_datasource/auth_remote_datasource.dart';
+import 'package:flutter_restaurant/data/remote_datasource/location_remote_datasource.dart';
 import 'package:flutter_restaurant/data/remote_datasource/restaurant_remote_datasource.dart';
 import 'package:flutter_restaurant/presentation/pages/add_restaurant_page.dart';
 import 'package:flutter_restaurant/presentation/pages/detail_restaurant_page.dart';
@@ -62,6 +64,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               GetRestaurantByUserIdBloc(RestaurantRemoteDataSource()),
+        ),
+        BlocProvider(
+          create: (context) => GetLocationBloc(LocationRemoteDataSource()),
         ),
       ],
       child: MaterialApp.router(
