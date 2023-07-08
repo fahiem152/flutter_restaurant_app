@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restaurant/bloc/get_by_id_restaurant/get_by_id_restaurant_bloc.dart';
 import 'package:flutter_restaurant/bloc/get_location/get_location_bloc.dart';
 import 'package:flutter_restaurant/bloc/get_restaurant_by_uesr_id/get_restaurant_by_user_id_bloc.dart';
+import 'package:flutter_restaurant/bloc/get_search_restaurant/get_search_restaurant_bloc.dart';
 
 import 'package:flutter_restaurant/bloc/login/login_bloc.dart';
 import 'package:flutter_restaurant/bloc/navigation/navigation_bloc.dart';
@@ -35,7 +36,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -68,11 +68,15 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => GetLocationBloc(LocationRemoteDataSource()),
         ),
+        BlocProvider(
+          create: (context) =>
+              GetSearchRestaurantBloc(RestaurantRemoteDataSource()),
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         routerConfig: GoRouter(
-          initialLocation: SplashPage.routeName,
+          initialLocation: SearchPage.routeName,
           routes: [
             GoRoute(
               path: LoginPage.routeName,

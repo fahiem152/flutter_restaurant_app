@@ -74,6 +74,35 @@ class RestaurantRemoteDataSource {
     }
   }
 
+  Future<Either<ErrorResponseModel, RestaurantsResponseModel>>
+      getRestaurantBySaerch(String keyRestaurant) async {
+    final response = await http.get(
+      Uri.parse(
+        '${Constants.baseUrl}/api/restaurants?filters[name][\$contains]=$keyRestaurant',
+      ),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    print('Response Body getRestaurantByUserId:  ${response.body}');
+
+    if (response.statusCode == 200) {
+      return Right(
+        RestaurantsResponseModel.fromJson(
+          jsonDecode(response.body),
+        ),
+      );
+    } else {
+      return Left(
+        ErrorResponseModel.fromJson(
+          jsonDecode(
+            response.body,
+          ),
+        ),
+      );
+    }
+  }
+
   Future<Either<ErrorResponseModel, AddRestaurantResponseModel>>
       getByIdRestaurant(int idRestaurant) async {
     final response = await http

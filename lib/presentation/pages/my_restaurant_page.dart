@@ -239,6 +239,7 @@ class RestaurantCard extends StatelessWidget {
     return InkWell(
       onTap: () => context.push('${DetailRestaurantPage.routeName}/${data.id}'),
       child: Card(
+        elevation: 5,
         child: ListTile(
           title: Text(
             data.attributes.name,
@@ -249,8 +250,9 @@ class RestaurantCard extends StatelessWidget {
             style: TextStyleConstant.textReguler6,
           ),
           leading: Container(
-            width: 64,
-            height: 64,
+            width: 72,
+            height: 72,
+            padding: const EdgeInsets.only(bottom: 8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(
                 8,
