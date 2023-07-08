@@ -38,7 +38,7 @@ class _SearchPageState extends State<SearchPage> {
             children: [
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 30,
                   vertical: 8,
                 ),
@@ -97,7 +97,7 @@ class _SearchPageState extends State<SearchPage> {
                             );
                           },
                           loading: () {
-                            return CircularProgressIndicator();
+                            return const CircularProgressIndicator();
                           },
                         );
                       },

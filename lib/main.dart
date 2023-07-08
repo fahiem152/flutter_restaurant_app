@@ -5,6 +5,7 @@ import 'package:flutter_restaurant/bloc/get_by_id_restaurant/get_by_id_restauran
 import 'package:flutter_restaurant/bloc/get_location/get_location_bloc.dart';
 import 'package:flutter_restaurant/bloc/get_restaurant_by_uesr_id/get_restaurant_by_user_id_bloc.dart';
 import 'package:flutter_restaurant/bloc/get_search_restaurant/get_search_restaurant_bloc.dart';
+import 'package:flutter_restaurant/bloc/get_user_by_id/get_user_by_id_bloc.dart';
 
 import 'package:flutter_restaurant/bloc/login/login_bloc.dart';
 import 'package:flutter_restaurant/bloc/navigation/navigation_bloc.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_restaurant/data/local_datasource/auth_local_datasource.d
 import 'package:flutter_restaurant/data/remote_datasource/auth_remote_datasource.dart';
 import 'package:flutter_restaurant/data/remote_datasource/location_remote_datasource.dart';
 import 'package:flutter_restaurant/data/remote_datasource/restaurant_remote_datasource.dart';
+import 'package:flutter_restaurant/data/remote_datasource/user_remote_datasource.dart';
 import 'package:flutter_restaurant/presentation/pages/add_restaurant_page.dart';
 import 'package:flutter_restaurant/presentation/pages/detail_restaurant_page.dart';
 import 'package:flutter_restaurant/presentation/pages/home_page.dart';
@@ -72,11 +74,14 @@ class MyApp extends StatelessWidget {
           create: (context) =>
               GetSearchRestaurantBloc(RestaurantRemoteDataSource()),
         ),
+        BlocProvider(
+          create: (context) => GetUserByIdBloc(UserRemoteDataSource()),
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         routerConfig: GoRouter(
-          initialLocation: SearchPage.routeName,
+          initialLocation: SplashPage.routeName,
           routes: [
             GoRoute(
               path: LoginPage.routeName,

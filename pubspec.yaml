@@ -50,6 +50,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   location: ^4.4.0
   geocoding: ^2.1.0
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
