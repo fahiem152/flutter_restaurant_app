@@ -6,12 +6,14 @@ import 'package:flutter_restaurant/bloc/get_location/get_location_bloc.dart';
 import 'package:flutter_restaurant/bloc/get_restaurant_by_uesr_id/get_restaurant_by_user_id_bloc.dart';
 import 'package:flutter_restaurant/bloc/get_search_restaurant/get_search_restaurant_bloc.dart';
 import 'package:flutter_restaurant/bloc/get_user_by_id/get_user_by_id_bloc.dart';
+import 'package:flutter_restaurant/bloc/gmap/gmap_bloc.dart';
 
 import 'package:flutter_restaurant/bloc/login/login_bloc.dart';
 import 'package:flutter_restaurant/bloc/navigation/navigation_bloc.dart';
 import 'package:flutter_restaurant/bloc/register/register_bloc.dart';
 import 'package:flutter_restaurant/data/local_datasource/auth_local_datasource.dart';
 import 'package:flutter_restaurant/data/remote_datasource/auth_remote_datasource.dart';
+import 'package:flutter_restaurant/data/remote_datasource/gmap_remote_datasource.dart';
 import 'package:flutter_restaurant/data/remote_datasource/location_remote_datasource.dart';
 import 'package:flutter_restaurant/data/remote_datasource/restaurant_remote_datasource.dart';
 import 'package:flutter_restaurant/data/remote_datasource/user_remote_datasource.dart';
@@ -76,6 +78,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GetUserByIdBloc(UserRemoteDataSource()),
+        ),
+        BlocProvider(
+          create: (context) => GmapBloc(GmapDatasource()),
         ),
       ],
       child: MaterialApp.router(

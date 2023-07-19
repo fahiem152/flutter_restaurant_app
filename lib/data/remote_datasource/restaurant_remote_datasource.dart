@@ -109,6 +109,7 @@ class RestaurantRemoteDataSource {
         .get(Uri.parse('${Constants.baseUrl}/api/restaurants/$idRestaurant'));
 
     if (response.statusCode == 200) {
+      print('respon body getByIdRestaurant ${response.body}');
       return Right(
           AddRestaurantResponseModel.fromJson(jsonDecode(response.body)));
     } else {

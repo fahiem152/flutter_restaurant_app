@@ -5,7 +5,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../data/models/response/add_restaurant_response_model.dart';
 import '../../data/models/response/error_response_model.dart';
-import '../../data/models/response/restaurants_response_model.dart';
 import '../../data/remote_datasource/restaurant_remote_datasource.dart';
 
 part 'get_by_id_restaurant_bloc.freezed.dart';

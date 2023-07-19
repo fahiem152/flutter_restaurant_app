@@ -25,6 +25,19 @@ class _DirectionPageState extends State<DirectionPage> {
   late final Set<Marker> markers = {};
   final Set<Polyline> polylines = {};
   final Location location = Location();
+  BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
+  void addCustomIcon() {
+    BitmapDescriptor.fromAssetImage(
+            const ImageConfiguration(size: Size(10, 10)),
+            "assets/images/marker.png")
+        .then(
+      (icon) {
+        setState(() {
+          markerIcon = icon;
+        });
+      },
+    );
+  }
 
   Future<void> setupLocation() async {
     late bool serviceEnabled;
@@ -53,6 +66,7 @@ class _DirectionPageState extends State<DirectionPage> {
 
   @override
   void initState() {
+    addCustomIcon();
     super.initState();
 
     Future.microtask(() async {
@@ -76,16 +90,19 @@ class _DirectionPageState extends State<DirectionPage> {
           CameraUpdate.newCameraPosition(cameraPosition),
         );
 
-        setState(() {
-          markers.removeWhere((element) => element.markerId.value == 'source');
-          markers.add(Marker(
-            markerId: const MarkerId('source'),
-            position: latlng,
-            icon: BitmapDescriptor.defaultMarkerWithHue(
-              BitmapDescriptor.hueRed,
-            ),
-          ));
-        });
+        setState(
+          () {
+            markers
+                .removeWhere((element) => element.markerId.value == 'source');
+            markers.add(
+              Marker(
+                markerId: const MarkerId('source'),
+                position: latlng,
+                icon: markerIcon,
+              ),
+            );
+          },
+        );
       }
     });
   }
@@ -120,6 +137,9 @@ class _DirectionPageState extends State<DirectionPage> {
 
   @override
   Widget build(BuildContext context) {
+    print('origin ${widget.origin.latitude} - ${widget.origin.longitude}');
+    print(
+        'destination ${widget.destination.latitude} - ${widget.destination.longitude}');
     return Scaffold(
       body: Center(
         child: Stack(

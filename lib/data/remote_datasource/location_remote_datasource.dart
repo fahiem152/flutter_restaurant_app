@@ -26,13 +26,13 @@ class LocationRemoteDataSource {
     if (locationData != null) {
       return Right(locationData);
     } else {
-      return Left('Error get Location Data');
+      return const Left('Error get Location Data');
     }
   }
 
   Future<Either<String, String>> getAddress(double? lat, double? lang) async {
     if (lat == null || lang == null) {
-      return Left('Error Get Address');
+      return const Left('Error Get Address');
     }
 
     final address = await geo.placemarkFromCoordinates(lat, lang);

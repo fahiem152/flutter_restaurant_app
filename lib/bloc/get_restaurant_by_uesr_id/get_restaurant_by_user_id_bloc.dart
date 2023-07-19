@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:bloc/bloc.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restaurant/data/local_datasource/auth_local_datasource.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -17,7 +18,7 @@ class GetRestaurantByUserIdBloc
 
   GetRestaurantByUserIdBloc(
     this.datasource,
-  ) : super(_Initial()) {
+  ) : super(const _Initial()) {
     on<_GetRestaurantByUserId>((event, emit) async {
       emit(const _Loading());
       final userId = await AuthLocalDataSource().getUserId();

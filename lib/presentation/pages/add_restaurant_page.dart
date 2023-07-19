@@ -2,16 +2,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart' as geo;
+import 'package:flutter_restaurant/bloc/gmap/gmap_bloc.dart';
+import 'package:flutter_restaurant/presentation/pages/gmap_page.dart';
 
-import 'package:flutter_restaurant/bloc/get_all_restaurant/get_all_restaurant_bloc.dart';
-import 'package:flutter_restaurant/bloc/get_location/get_location_bloc.dart';
 import 'package:flutter_restaurant/bloc/get_restaurant_by_uesr_id/get_restaurant_by_user_id_bloc.dart';
 import 'package:flutter_restaurant/common/color.constant.dart';
 import 'package:flutter_restaurant/common/textstyle.constant.dart';
 import 'package:flutter_restaurant/data/local_datasource/auth_local_datasource.dart';
 import 'package:flutter_restaurant/presentation/widgets/text_input_widget.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart';
@@ -30,11 +30,13 @@ class AddRestaurantPage extends StatefulWidget {
 class _AddRestaurantPageState extends State<AddRestaurantPage> {
   TextEditingController? nameController;
   TextEditingController? descriptionController;
+  TextEditingController? addressController;
 
   XFile? picture;
   LocationData? currentLocation;
-  String address = "";
-  bool isLoading = false;
+  // String address = "";
+  // bool isLoading = false;
+  LatLng? position;
 
   void takePicture(XFile file) {
     picture = file;
@@ -45,6 +47,8 @@ class _AddRestaurantPageState extends State<AddRestaurantPage> {
   void initState() {
     nameController = TextEditingController();
     descriptionController = TextEditingController();
+    addressController = TextEditingController();
+    context.read<GmapBloc>().add(const GmapEvent.getCurrentLocation());
     super.initState();
   }
 
@@ -53,6 +57,7 @@ class _AddRestaurantPageState extends State<AddRestaurantPage> {
     super.dispose();
     nameController!.dispose();
     descriptionController!.dispose();
+    addressController!.dispose();
   }
 
   Future<void> getImage(ImageSource source) async {
@@ -77,7 +82,7 @@ class _AddRestaurantPageState extends State<AddRestaurantPage> {
           style: TextStyleConstant.h4,
         ),
         backgroundColor: ColorConstant.red,
-        automaticallyImplyLeading: false,
+        // automaticallyImplyLeading: false,
         centerTitle: true,
         elevation: 5,
       ),
@@ -193,112 +198,209 @@ class _AddRestaurantPageState extends State<AddRestaurantPage> {
             const SizedBox(
               height: 16,
             ),
-            // BlocConsumer<GetLocationBloc, GetLocationState>(
-            //   listener: (context, state) {
-            //     state.maybeWhen(
-            //       orElse: () {},
-            //       loaded: (locationData, address) {
-            //         return Column(
+            // position == null
+            //     ? const SizedBox()
+            //     : Container(
+            //         decoration: BoxDecoration(
+            //           border: Border.all(
+            //             color: Colors.grey,
+            //           ),
+            //           borderRadius: BorderRadius.circular(12),
+            //         ),
+            //         width: double.infinity,
+            //         padding: const EdgeInsets.all(16),
+            //         child: Column(
+            //           crossAxisAlignment: CrossAxisAlignment.center,
             //           children: [
-            //             Text('Latitude: ${locationData.latitude}'),
-            //             Text('Longitude: ${locationData.longitude}'),
-            //             Text('Address: ${address}'),
+            //             Text(
+            //               'Latitude: ${position!.latitude}',
+            //               style: const TextStyle(
+            //                 color: Colors.grey,
+            //                 fontSize: 12,
+            //               ),
+            //             ),
+            //             const SizedBox(
+            //               height: 8,
+            //             ),
+            //             Text(
+            //               'Longitude: ${position!.longitude}',
+            //               style: const TextStyle(
+            //                 color: Colors.grey,
+            //                 fontSize: 12,
+            //               ),
+            //             )
             //           ],
+            //         )),
+
+            // address == ""
+            //     ? const SizedBox()
+            //     : Container(
+            //         decoration: BoxDecoration(
+            //           border: Border.all(
+            //             color: Colors.grey,
+            //           ),
+            //           borderRadius: BorderRadius.circular(12),
+            //         ),
+            //         width: double.infinity,
+            //         padding: const EdgeInsets.all(16),
+            //         child: Text(
+            //           'Address: ${position!.latitude}',
+            //           style: const TextStyle(
+            //             color: Colors.grey,
+            //             fontSize: 12,
+            //           ),
+            //           textAlign: TextAlign.justify,
+            //         )),
+
+            BlocBuilder<GmapBloc, GmapState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  orElse: () {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                  loaded: (model) {
+                    position = model.latLng;
+                    addressController!.text = model.address ?? '';
+                    print('address ${addressController!.text}');
+                    return Row(
+                      children: [
+                        Expanded(
+                            flex: 2,
+                            child: Container(
+                              margin: const EdgeInsets.all(8),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 16),
+                              decoration: BoxDecoration(
+                                color: ColorConstant.red3,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Address: ${addressController!.text}',
+                                    style: TextStyleConstant.textSemiBold6
+                                        .copyWith(color: ColorConstant.black2),
+                                  ),
+                                  SizedBox(
+                                    height: 4,
+                                  ),
+                                  Text(
+                                    'Latitude: ${position!.latitude}',
+                                    style: TextStyleConstant.textSemiBold6
+                                        .copyWith(color: ColorConstant.black2),
+                                  ),
+                                  SizedBox(
+                                    height: 4,
+                                  ),
+                                  Text(
+                                    'Longitude: ${position!.longitude}',
+                                    style: TextStyleConstant.textSemiBold6
+                                        .copyWith(color: ColorConstant.black2),
+                                  ),
+                                ],
+                              ),
+                            )
+                            // child: TextField(
+                            //   controller: addressController,
+                            //   decoration:
+                            //       const InputDecoration(labelText: 'Address'),
+                            //   maxLines: 2,
+                            // ),
+                            ),
+                        Expanded(
+                          flex: 1,
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: ColorConstant.red4,
+                                elevation: 4,
+                              ),
+                              onPressed: () {
+                                print(model.latLng!.latitude);
+                                print(model.latLng!.longitude);
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return GmapPage(
+                                    lat: model.latLng!.latitude,
+                                    long: model.latLng!.longitude,
+                                  );
+                                }));
+                              },
+                              child: const Text('Ganti')),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+            ),
+            // BlocConsumer<GmapBloc, GmapState>(
+            //   builder: (context, state) {
+            //     return state.maybeWhen(
+            //       loading: () {
+            //         return const Center(
+            //           child: CircularProgressIndicator(),
             //         );
             //       },
-            //       error: (message) {
-            //         Text('Message $message');
+            //       orElse: () {
+            //         return ElevatedButton(
+            //           style: ElevatedButton.styleFrom(
+            //             backgroundColor: ColorConstant.red4,
+            //             elevation: 4,
+            //           ),
+            //           onPressed: () {
+            //             context
+            //                 .read<GmapBloc>()
+            //                 .add(const GmapEvent.getCurrentLocation());
+            //           },
+            //           child: Row(
+            //             mainAxisAlignment: MainAxisAlignment.center,
+            //             children: [
+            //               const Icon(Icons.location_on),
+            //               const SizedBox(
+            //                 width: 4,
+            //               ),
+            //               Text(
+            //                 "Get Location Restaurant",
+            //                 style: TextStyleConstant.textReguler6,
+            //               ),
+            //             ],
+            //           ),
+            //         );
             //       },
             //     );
             //   },
-            //   builder: (context, state) {
-            //     return state.maybeWhen(loading: () {
-            //       return Center(
-            //         child: CircularProgressIndicator(),
-            //       );
-            //     }, orElse: () {
-            //       return ElevatedButton(
-            //         style: ElevatedButton.styleFrom(
-            //           backgroundColor: ColorConstant.red4,
-            //           elevation: 4,
-            //         ),
-            //         onPressed: () {
-            //           context
-            //               .read<GetLocationBloc>()
-            //               .add(GetLocationEvent.getLocation());
-            //         },
-            //         child: Row(
-            //           mainAxisAlignment: MainAxisAlignment.center,
-            //           children: [
-            //             const Icon(Icons.location_on),
-            //             const SizedBox(
-            //               width: 4,
+            //   listener: (context, state) {
+            //     state.maybeWhen(
+            //       orElse: () {},
+            //       loaded: (model) {
+            //         position = model.latLng;
+            //         address = model.address ?? '';
+            //         Navigator.push(
+            //           context,
+            //           MaterialPageRoute(
+            //             builder: (context) => GmapPage(
+            //               lat: model.latLng!.latitude,
+            //               long: model.latLng!.longitude,
             //             ),
-            //             Text(
-            //               "Get Location Restaurant",
-            //               style: TextStyleConstant.textReguler6,
+            //           ),
+            //         );
+            //       },
+            //       error: (message) {
+            //         ScaffoldMessenger.of(context).showSnackBar(
+            //           SnackBar(
+            //             content: Text(
+            //               message,
             //             ),
-            //           ],
-            //         ),
-            //       );
-            //     });
-            //     // return ElevatedButton(
-            //     //   style: ElevatedButton.styleFrom(
-            //     //     backgroundColor: ColorConstant.red4,
-            //     //     elevation: 4,
-            //     //   ),
-            //     //   onPressed: () {},
-            //     //   child: Row(
-            //     //     mainAxisAlignment: MainAxisAlignment.center,
-            //     //     children: [
-            //     //       const Icon(Icons.location_on),
-            //     //       const SizedBox(
-            //     //         width: 4,
-            //     //       ),
-            //     //       Text(
-            //     //         "Get Location Restaurant",
-            //     //         style: TextStyleConstant.textReguler6,
-            //     //       ),
-            //     //     ],
-            //     //   ),
-            //     // );
+            //           ),
+            //         );
+            //       },
+            //     );
             //   },
             // ),
 
-            isLoading == false
-                ? ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorConstant.red4,
-                      elevation: 4,
-                    ),
-                    onPressed: _getLocation,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.location_on),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                        Text(
-                          "Get Location Restaurant",
-                          style: TextStyleConstant.textReguler6,
-                        ),
-                      ],
-                    ),
-                  )
-                : Center(child: const CircularProgressIndicator()),
-
-            currentLocation == null
-                ? const SizedBox()
-                : Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Text(
-                        'Berhasil mendapatkan lokasi',
-                        style: TextStyleConstant.textReguler6,
-                      ),
-                    ),
-                  ),
             const SizedBox(
               height: 32,
             ),
@@ -340,14 +442,22 @@ class _AddRestaurantPageState extends State<AddRestaurantPage> {
                         elevation: 5,
                       ),
                       onPressed: () async {
+                        print('position!.latitude' +
+                            position!.latitude.toString());
+                        print('position!.longitude' +
+                            position!.longitude.toString());
                         final userId = await AuthLocalDataSource().getUserId();
                         final addRestauranModel = AddRestaurantRequestModel(
                           data: DataRestaurant(
                             name: nameController!.text,
                             description: descriptionController!.text,
-                            latitude: currentLocation!.latitude.toString(),
-                            longitude: currentLocation!.longitude.toString(),
-                            address: address,
+                            latitude: position == null
+                                ? '0'
+                                : position!.latitude.toString(),
+                            longitude: position == null
+                                ? '0'
+                                : position!.longitude.toString(),
+                            address: addressController!.text,
                             // latitude: latitudeController!.text,
                             // longitude: longitudeController!.text,
                             // address: addressController!.text,
@@ -381,54 +491,54 @@ class _AddRestaurantPageState extends State<AddRestaurantPage> {
     );
   }
 
-  void _getLocation() {
-    setState(() {
-      isLoading = true;
-    });
-    _getLocationData().then((value) {
-      LocationData? location = value;
-      _getAddress(location?.latitude, location?.longitude).then((value) {
-        setState(() {
-          currentLocation = location;
-          address = value;
-          isLoading = false;
-        });
-      });
-    });
-  }
+  // void _getLocation() {
+  //   setState(() {
+  //     isLoading = true;
+  //   });
+  //   _getLocationData().then((value) {
+  //     LocationData? location = value;
+  //     _getAddress(location?.latitude, location?.longitude).then((value) {
+  //       setState(() {
+  //         currentLocation = location;
+  //         address = value;
+  //         isLoading = false;
+  //       });
+  //     });
+  //   });
+  // }
 }
 
-Future<LocationData?> _getLocationData() async {
-  Location location = Location();
-  LocationData locationData;
+// Future<LocationData?> _getLocationData() async {
+//   Location location = Location();
+//   LocationData locationData;
 
-  bool serviceEnabled;
-  PermissionStatus permissionGranted;
+//   bool serviceEnabled;
+//   PermissionStatus permissionGranted;
 
-  serviceEnabled = await location.serviceEnabled();
-  if (!serviceEnabled) {
-    serviceEnabled = await location.requestService();
-    if (!serviceEnabled) {
-      return null;
-    }
-  }
+//   serviceEnabled = await location.serviceEnabled();
+//   if (!serviceEnabled) {
+//     serviceEnabled = await location.requestService();
+//     if (!serviceEnabled) {
+//       return null;
+//     }
+//   }
 
-  permissionGranted = await location.hasPermission();
-  if (permissionGranted == PermissionStatus.denied) {
-    permissionGranted = await location.requestPermission();
-    if (permissionGranted != PermissionStatus.granted) {
-      return null;
-    }
-  }
+//   permissionGranted = await location.hasPermission();
+//   if (permissionGranted == PermissionStatus.denied) {
+//     permissionGranted = await location.requestPermission();
+//     if (permissionGranted != PermissionStatus.granted) {
+//       return null;
+//     }
+//   }
 
-  locationData = await location.getLocation();
+//   locationData = await location.getLocation();
 
-  return locationData;
-}
+//   return locationData;
+// }
 
-Future<String> _getAddress(double? lat, double? lang) async {
-  if (lat == null || lang == null) return "";
+// Future<String> _getAddress(double? lat, double? lang) async {
+//   if (lat == null || lang == null) return "";
 
-  final address = await geo.placemarkFromCoordinates(lat, lang);
-  return "${address[0].street}, ${address[0].subLocality}, ${address[0].locality}, ${address[0].postalCode}";
-}
+//   final address = await geo.placemarkFromCoordinates(lat, lang);
+//   return "${address[0].street}, ${address[0].subLocality}, ${address[0].locality}, ${address[0].postalCode}";
+// }

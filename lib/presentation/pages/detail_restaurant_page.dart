@@ -179,6 +179,27 @@ class _DetailRestaurantPageState extends State<DetailRestaurantPage> {
                                 color: ColorConstant.black,
                               ),
                             ),
+                            SizedBox(
+                              height: 4,
+                            ),
+                            Text(
+                              model.data.attributes.address,
+                              style: TextStyleConstant.textReguler3.copyWith(
+                                color: ColorConstant.black,
+                              ),
+                            ),
+                            Text(
+                              model.data.attributes.latitude,
+                              style: TextStyleConstant.textReguler5.copyWith(
+                                color: ColorConstant.black,
+                              ),
+                            ),
+                            Text(
+                              model.data.attributes.longitude,
+                              style: TextStyleConstant.textReguler5.copyWith(
+                                color: ColorConstant.black,
+                              ),
+                            ),
                             const SizedBox(
                               height: 4,
                             ),
