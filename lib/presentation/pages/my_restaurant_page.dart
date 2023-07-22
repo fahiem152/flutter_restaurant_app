@@ -1,17 +1,19 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+
 import 'package:flutter_restaurant/bloc/get_restaurant_by_uesr_id/get_restaurant_by_user_id_bloc.dart';
 import 'package:flutter_restaurant/common/color.constant.dart';
 import 'package:flutter_restaurant/common/textstyle.constant.dart';
 
-import 'package:flutter_restaurant/data/models/response/restaurants_response_model.dart';
 import 'package:flutter_restaurant/presentation/pages/add_restaurant_page.dart';
-import 'package:flutter_restaurant/presentation/pages/detail_restaurant_page.dart';
-import 'package:flutter_restaurant/presentation/pages/home_page.dart';
 
+import 'package:flutter_restaurant/presentation/pages/home_page.dart';
 import 'package:flutter_restaurant/presentation/pages/profile_page.dart';
 import 'package:flutter_restaurant/presentation/pages/search_page.dart';
-import 'package:go_router/go_router.dart';
+
+import '../widgets/card_restaurant_horizontal.dart';
 
 class MyRestaurantPage extends StatefulWidget {
   static const routeName = '/my-restaurant';
@@ -101,7 +103,10 @@ class _MyRestaurantPageState extends State<MyRestaurantPage> {
                   loaded: (data) {
                     return ListView.builder(
                       itemBuilder: (context, index) {
-                        return RestaurantCard(data: data.data[index]);
+                        return RestaurantCard(
+                          data: data.data[index],
+                          isUser: true,
+                        );
                       },
                       itemCount: data.data.length,
                     );
@@ -224,50 +229,5 @@ class _MyRestaurantPageState extends State<MyRestaurantPage> {
     //     ),
     //   ),
     // );
-  }
-}
-
-class RestaurantCard extends StatelessWidget {
-  const RestaurantCard({
-    Key? key,
-    required this.data,
-  }) : super(key: key);
-  final Restaurant data;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => context.push('${DetailRestaurantPage.routeName}/${data.id}'),
-      child: Card(
-        elevation: 5,
-        child: ListTile(
-          title: Text(
-            data.attributes.name,
-            style: TextStyleConstant.textSemiBold5,
-          ),
-          subtitle: Text(
-            data.attributes.address,
-            style: TextStyleConstant.textReguler6,
-          ),
-          leading: Container(
-            width: 72,
-            height: 72,
-            padding: const EdgeInsets.only(bottom: 8),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                8,
-              ),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                data.attributes.photo ?? 'https://picsum.photos/200/300',
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
   }
 }

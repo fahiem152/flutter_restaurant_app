@@ -7,6 +7,8 @@ import 'package:flutter_restaurant/data/models/response/auth_response_model.dart
 import 'package:flutter_restaurant/data/models/response/error_response_model.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/request/update_user_request_model.dart';
+
 class UserRemoteDataSource {
   Future<Either<ErrorResponseModel, User>> getUser(int idUser) async {
     final getToken = await AuthLocalDataSource().getToken();
@@ -19,6 +21,37 @@ class UserRemoteDataSource {
         'Authorization': 'Bearer $getToken',
       },
     );
+    print('Response Body getUserById:  ${response.body}');
+
+    if (response.statusCode == 200) {
+      return Right(
+        User.fromJson(
+          jsonDecode(response.body),
+        ),
+      );
+    } else {
+      return Left(
+        ErrorResponseModel.fromJson(
+          jsonDecode(
+            response.body,
+          ),
+        ),
+      );
+    }
+  }
+
+  Future<Either<ErrorResponseModel, User>> updateUser(
+      int idUser, UpdateUserRequestModel model) async {
+    final getToken = await AuthLocalDataSource().getToken();
+    final response = await http.put(
+        Uri.parse(
+          '${Constants.baseUrl}/api/users/$idUser',
+        ),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $getToken',
+        },
+        body: jsonEncode(model.toJson()));
     print('Response Body getUserById:  ${response.body}');
 
     if (response.statusCode == 200) {

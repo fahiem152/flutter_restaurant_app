@@ -9,6 +9,8 @@ import 'package:flutter_restaurant/presentation/pages/my_restaurant_page.dart';
 import 'package:flutter_restaurant/presentation/pages/profile_page.dart';
 import 'package:go_router/go_router.dart';
 
+import '../widgets/card_restaurant_horizontal.dart';
+
 class SearchPage extends StatefulWidget {
   static const routeName = '/search';
   const SearchPage({super.key});

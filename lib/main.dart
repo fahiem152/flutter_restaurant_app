@@ -11,6 +11,7 @@ import 'package:flutter_restaurant/bloc/gmap/gmap_bloc.dart';
 import 'package:flutter_restaurant/bloc/login/login_bloc.dart';
 import 'package:flutter_restaurant/bloc/navigation/navigation_bloc.dart';
 import 'package:flutter_restaurant/bloc/register/register_bloc.dart';
+import 'package:flutter_restaurant/bloc/update_restaurant/update_restaurant_bloc.dart';
 import 'package:flutter_restaurant/data/local_datasource/auth_local_datasource.dart';
 import 'package:flutter_restaurant/data/remote_datasource/auth_remote_datasource.dart';
 import 'package:flutter_restaurant/data/remote_datasource/gmap_remote_datasource.dart';
@@ -27,11 +28,15 @@ import 'package:flutter_restaurant/presentation/pages/profile_page.dart';
 import 'package:flutter_restaurant/presentation/pages/register_page.dart';
 import 'package:flutter_restaurant/presentation/pages/search_page.dart';
 import 'package:flutter_restaurant/presentation/pages/splash_page.dart';
+import 'package:flutter_restaurant/presentation/pages/update_profile_page.dart';
+import 'package:flutter_restaurant/presentation/pages/update_restaurant_page.dart';
 
 import 'package:go_router/go_router.dart';
 
 import 'bloc/create_restaurant/create_restaurant_bloc.dart';
+import 'bloc/delete_restaurant/delete_resataurant_bloc.dart';
 import 'bloc/get_all_restaurant/get_all_restaurant_bloc.dart';
+import 'bloc/update_profile/update_profile_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -82,6 +87,17 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => GmapBloc(GmapDatasource()),
         ),
+        BlocProvider(
+          create: (context) =>
+              DeleteResataurantBloc(RestaurantRemoteDataSource()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              UpdateRestaurantBloc(RestaurantRemoteDataSource()),
+        ),
+        BlocProvider(
+          create: (context) => UpdateProfileBloc(UserRemoteDataSource()),
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
@@ -131,22 +147,25 @@ class MyApp extends StatelessWidget {
               path: AddRestaurantPage.routeName,
               builder: (context, state) => const AddRestaurantPage(),
             ),
+
             GoRoute(
               path: SearchPage.routeName,
               builder: (context, state) => const SearchPage(),
             ),
+
             GoRoute(
-                path: ProfilePage.routeName,
-                builder: (context, state) => const ProfilePage(),
-                redirect: (context, state) async {
-                  final isLogin = await AuthLocalDataSource().isLogin();
-                  debugPrint('isLogin: $isLogin');
-                  if (isLogin) {
-                    return null;
-                  } else {
-                    return LoginPage.routeName;
-                  }
-                }),
+              path: ProfilePage.routeName,
+              builder: (context, state) => const ProfilePage(),
+              redirect: (context, state) async {
+                final isLogin = await AuthLocalDataSource().isLogin();
+                debugPrint('isLogin: $isLogin');
+                if (isLogin) {
+                  return null;
+                } else {
+                  return LoginPage.routeName;
+                }
+              },
+            ),
           ],
         ),
       ),

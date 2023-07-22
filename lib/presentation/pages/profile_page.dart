@@ -7,6 +7,7 @@ import 'package:flutter_restaurant/common/textstyle.constant.dart';
 import 'package:flutter_restaurant/presentation/pages/home_page.dart';
 import 'package:flutter_restaurant/presentation/pages/my_restaurant_page.dart';
 import 'package:flutter_restaurant/presentation/pages/search_page.dart';
+import 'package:flutter_restaurant/presentation/pages/update_profile_page.dart';
 import 'package:go_router/go_router.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -231,6 +232,39 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ),
                                     ],
                                   ),
+                                  const SizedBox(
+                                    height: 32,
+                                  ),
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: ColorConstant.red,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                          8,
+                                        ),
+                                      ),
+                                      minimumSize: Size(
+                                        MediaQuery.of(context).size.width,
+                                        48,
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  UpdateProfilePage(
+                                                    user: model,
+                                                  )));
+                                    },
+                                    child: Text(
+                                      'Edit',
+                                      style: TextStyleConstant.textSemiBold5
+                                          .copyWith(
+                                        color: ColorConstant.white,
+                                      ),
+                                    ),
+                                  )
                                 ],
                               ),
                             );
@@ -238,30 +272,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         );
                       },
                     ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: ColorConstant.red,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            8,
-                          ),
-                        ),
-                        minimumSize: Size(
-                          MediaQuery.of(context).size.width,
-                          48,
-                        ),
-                      ),
-                      onPressed: () {},
-                      child: Text(
-                        'Edit',
-                        style: TextStyleConstant.textSemiBold5.copyWith(
-                          color: ColorConstant.white,
-                        ),
-                      ),
-                    )
                   ],
                 ),
               ),

@@ -175,4 +175,51 @@ class MockRestaurantRemoteDataSource extends _i1.Mock
           ) as _i4.Future<
               _i2.Either<_i5.ErrorResponseModel,
                   _i7.AddRestaurantResponseModel>>);
+  @override
+  _i4.Future<_i2.Either<_i5.ErrorResponseModel, _i6.Restaurant>>
+      deleteRestaurant(int? idRestaurant) => (super.noSuchMethod(
+            Invocation.method(
+              #deleteRestaurant,
+              [idRestaurant],
+            ),
+            returnValue: _i4.Future<
+                    _i2.Either<_i5.ErrorResponseModel, _i6.Restaurant>>.value(
+                _FakeEither_0<_i5.ErrorResponseModel, _i6.Restaurant>(
+              this,
+              Invocation.method(
+                #deleteRestaurant,
+                [idRestaurant],
+              ),
+            )),
+          ) as _i4.Future<_i2.Either<_i5.ErrorResponseModel, _i6.Restaurant>>);
+  @override
+  _i4.Future<_i2.Either<_i5.ErrorResponseModel, _i7.AddRestaurantResponseModel>>
+      updateRestaurant(
+    _i10.AddRestaurantRequestModel? model,
+    int? idRestaurant,
+  ) =>
+          (super.noSuchMethod(
+            Invocation.method(
+              #updateRestaurant,
+              [
+                model,
+                idRestaurant,
+              ],
+            ),
+            returnValue: _i4.Future<
+                _i2.Either<_i5.ErrorResponseModel,
+                    _i7.AddRestaurantResponseModel>>.value(_FakeEither_0<
+                _i5.ErrorResponseModel, _i7.AddRestaurantResponseModel>(
+              this,
+              Invocation.method(
+                #updateRestaurant,
+                [
+                  model,
+                  idRestaurant,
+                ],
+              ),
+            )),
+          ) as _i4.Future<
+              _i2.Either<_i5.ErrorResponseModel,
+                  _i7.AddRestaurantResponseModel>>);
 }

@@ -196,4 +196,59 @@ class RestaurantRemoteDataSource {
       throw Exception(e);
     }
   }
+
+  Future<Either<ErrorResponseModel, Restaurant>> deleteRestaurant(
+      int idRestaurant) async {
+    final token = await AuthLocalDataSource().getToken();
+    print(token);
+    final response = await http.delete(
+      Uri.parse(
+        '${Constants.baseUrl}/api/restaurants/$idRestaurant',
+      ),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
+    print(response.body);
+    if (response.statusCode == 200) {
+      final jsonResponse = jsonDecode(response.body);
+      return Right(
+        Restaurant.fromJson(jsonResponse['data']),
+      );
+    } else {
+      return Left(ErrorResponseModel.fromJson(jsonDecode(response.body)));
+    }
+  }
+
+  Future<Either<ErrorResponseModel, AddRestaurantResponseModel>>
+      updateRestaurant(
+          AddRestaurantRequestModel model, int idRestaurant) async {
+    try {
+      final getToken = await AuthLocalDataSource().getToken();
+      debugPrint('token: $getToken');
+      final response = await http.put(
+        Uri.parse(
+          '${Constants.baseUrl}/api/restaurants/$idRestaurant',
+        ),
+        body: jsonEncode(model),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $getToken',
+        },
+      );
+      debugPrint('responseData: ${response.statusCode}');
+      debugPrint('responseDataBody: ${response.body}');
+      if (response.statusCode == 200) {
+        return Right(AddRestaurantResponseModel.fromJson(
+          jsonDecode(response.body),
+        ));
+      } else {
+        return Left(ErrorResponseModel.fromJson(jsonDecode(response.body)));
+      }
+    } catch (e) {
+      debugPrint('error creater: $e');
+      throw Exception(e);
+    }
+  }
 }
